@@ -1,3 +1,3 @@
 class Job < ApplicationRecord
-    belongs_to :character_class
+    has_many :character_classes
 end

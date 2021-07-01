@@ -1,3 +1,4 @@
 class CharacterClass < ApplicationRecord
-    has_many :job
+    belongs_to :job
+    belongs_to :character_sheet
 end

@@ -1,3 +1,4 @@
 class CharacterRace < ApplicationRecord
-    has_many :race
+    belongs_to :race
+    belongs_to :character_sheet
 end

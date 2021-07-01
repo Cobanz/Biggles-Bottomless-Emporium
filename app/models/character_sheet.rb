@@ -1,12 +1,12 @@
 class CharacterSheet < ApplicationRecord
     belongs_to :user
 
-    has_many :character_race
-    has_many :race, through: :character_race
+    has_many :character_races
+    has_many :races, through: :character_races
 
-    has_many :character_class
-    has_many :job, through: :character_class
+    has_many :character_classes
+    has_many :jobs, through: :character_classes
 
-    has_many :character_background
-    has_many :background, through: :character_background
+    has_many :character_backgrounds
+    has_many :backgrounds, through: :character_backgrounds
 end

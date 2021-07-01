@@ -6,12 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Race.destroy_all
+Job.destroy_all
+Background.destroy_all
 
 races = [
     
     {   "index": "dragonborn",
         "name": "Dragonborn",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": 
         [
           {
@@ -132,7 +135,7 @@ races = [
 
     {  "index": "dwarf",
          "name": "Dwarf",
-         "speed": 25,
+         "speed": "25",
         "ability_bonuses": [
             {
             "ability_score": {
@@ -242,7 +245,7 @@ races = [
 
     {   "index": "elf",
         "name": "Elf",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": [
           {
             "ability_score": {
@@ -306,7 +309,7 @@ races = [
       
     {   "index": "gnome",
         "name": "Gnome",
-        "speed": 25,
+        "speed": "25",
         "ability_bonuses": [
         {
             "ability_score": {
@@ -361,7 +364,7 @@ races = [
    
     {   "index": "half-elf",
         "name": "Half-Elf",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": [
         {
             "ability_score": {
@@ -635,7 +638,7 @@ races = [
 
     {   "index": "half-orc",
         "name": "Half-Orc",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": [
           {
             "ability_score": {
@@ -703,7 +706,7 @@ races = [
 
     {   "index": "halfling",
         "name": "Halfling",
-        "speed": 25,
+        "speed": "25",
         "ability_bonuses": [
           {
             "ability_score": {
@@ -763,7 +766,7 @@ races = [
 
     {   "index": "human",
         "name": "Human",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": [
           {
             "ability_score": {
@@ -911,6 +914,11 @@ races = [
         },
         "language_desc": "You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.",
         "traits": [
+            {
+              "index": "",
+              "name": "",
+              "url": ""
+            }
           
         ],
         "subraces": [
@@ -921,7 +929,7 @@ races = [
     
     {   "index": "tiefling",
         "name": "Tiefling",
-        "speed": 30,
+        "speed": "30",
         "ability_bonuses": [
         {
             "ability_score": {
@@ -987,8 +995,66 @@ races = [
 # something like this
 # races do each || = Race.create()
 
-races.each do |races|
-    Race.create(name: races.name, speed: races.speed, ability_bonuses: races.ability_bonuses, alignment: races.alignment, age: races.age, size: races.size, size_description: races.size_description, starting_proficiencies: races.starting_proficiencies, starting_proficiency_options: races.starting_proficiency_options, languages: races.languages, language_desc: races.language_desc, traits: races.traits, trait_options: races.trait_options, subraces: races.subraces, url: races.url)
+races.each do |race|
+    ability_list = ""
+    race[:ability_bonuses].each do |bonus|
+        ability_list += bonus[:ability_score][:name] + " + #{bonus[:bonus].to_s}" + ", "
+    end
+
+    starting_prof_list = ""
+    race[:starting_proficiencies].each do |starting|
+        starting_prof_list += starting[:name] + ", "
+    end
+
+    starting_prof_options_list = ""
+    if race.key?("starting_proficiency_options")
+        starting_prof_options_list += "choose + #{race[:starting_proficiency_options][:choose].to_s}" + " proficencies from:"
+    race[:starting_proficiency_options][:from].each do |profs|
+        starting_prof_options_list += prof[:name]  + ", "
+    end
+        else starting_prof_list = "no options"
+    end
+
+    language_list = ""
+    race[:languages].each do |language|
+        language_list += language[:name] + ", "
+    end
+
+    traits_list = ""
+    race[:traits].each do |trait|
+        traits_list += trait[:name] + ", "
+    end
+
+    traits_options_list = ""
+    if race.key?("trait_options")
+        traits_options_list += "choose #{race[:trait_options][:choose].to_s}" + "traits from:"
+    race[:trait_options][:from].each do |trait|
+        traits_options_list += trait["name"]  + ", "
+    end
+        else traits_options_list = "no options"
+    end
+
+    subraces_list = ""
+    race[:subraces].each do |subrace|
+        subraces_list += subrace[:name] + ", "
+    end
+
+   
+    Race.create!(name: race[:name],
+        speed: race[:speed],
+        ability_bonuses: ability_list,
+        alignment: race[:alignment],
+        age: race[:age],
+        size: race[:size],
+        size_description: race[:size_description],
+        starting_proficiencies: starting_prof_list,
+        starting_proficiency_options: starting_prof_options_list,
+        languages: language_list,
+        language_desc: race[:language_desc],
+        traits: traits_list,
+        trait_options: traits_options_list,
+        subraces: subraces_list,
+        url: race[:url])
 end
 
 puts "races done"
@@ -4026,349 +4092,349 @@ end
 
 puts "jobs done"
 
-backgrounds = [
+# backgrounds = [
    
-        {   "index": "acolyte",
-            "name": "Acolyte",
-            "starting_proficiencies": [
-                {
-                    "index": "skill-insight",
-                    "name": "Skill: Insight",
-                    "url": "/api/proficiencies/skill-insight"
-                },
-                {
-                    "index": "skill-religion",
-                    "name": "Skill: Religion",
-                    "url": "/api/proficiencies/skill-religion"
-                }
-            ],
-            "language_options": {
-                "from": [
-                    {
-                        "index": "common",
-                        "name": "Common",
-                        "url": "/api/languages/common"
-                    },
-                    {
-                        "index": "dwarvish",
-                        "name": "Dwarvish",
-                        "url": "/api/languages/dwarvish"
-                    },
-                    {
-                        "index": "elvish",
-                        "name": "Elvish",
-                        "url": "/api/languages/elvish"
-                    },
-                    {
-                        "index": "giant",
-                        "name": "Giant",
-                        "url": "/api/languages/giant"
-                    },
-                    {
-                        "index": "gnomish",
-                        "name": "Gnomish",
-                        "url": "/api/languages/gnomish"
-                    },
-                    {
-                        "index": "goblin",
-                        "name": "Goblin",
-                        "url": "/api/languages/goblin"
-                    },
-                    {
-                        "index": "halfling",
-                        "name": "Halfling",
-                        "url": "/api/languages/halfling"
-                    },
-                    {
-                        "index": "orc",
-                        "name": "Orc",
-                        "url": "/api/languages/orc"
-                    },
-                    {
-                        "index": "abyssal",
-                        "name": "Abyssal",
-                        "url": "/api/languages/abyssal"
-                    },
-                    {
-                        "index": "celestial",
-                        "name": "Celestial",
-                        "url": "/api/languages/celestial"
-                    },
-                    {
-                        "index": "draconic",
-                        "name": "Draconic",
-                        "url": "/api/languages/draconic"
-                    },
-                    {
-                        "index": "deep-speech",
-                        "name": "Deep Speech",
-                        "url": "/api/languages/deep-speech"
-                    },
-                    {
-                        "index": "infernal",
-                        "name": "Infernal",
-                        "url": "/api/languages/infernal"
-                    },
-                    {
-                        "index": "primordial",
-                        "name": "Primordial",
-                        "url": "/api/languages/primordial"
-                    },
-                    {
-                        "index": "sylvan",
-                        "name": "Sylvan",
-                        "url": "/api/languages/sylvan"
-                    },
-                    {
-                        "index": "undercommon",
-                        "name": "Undercommon",
-                        "url": "/api/languages/undercommon"
-                    }
-                ],
-                "choose": 2,
-                "type": "languages"
-            },
-            "starting_equipment": [
-                {
-                    "equipment": {
-                        "index": "clothes-common",
-                        "name": "Clothes, common",
-                        "url": "/api/equipment/clothes-common"
-                    },
-                    "quantity": 1
-                },
-                {
-                    "equipment": {
-                        "index": "pouch",
-                        "name": "Pouch",
-                        "url": "/api/equipment/pouch"
-                    },
-                    "quantity": 1
-                }
-            ],
-            "starting_equipment_options": [
-                {
-                    "choose": 1,
-                    "type": "equipment",
-                    "from": [
-                    {
-                        "equipment_category": {
-                            "index": "holy-symbols",
-                            "name": "Holy Symbols",
-                            "url": "/api/equipment-categories/holy-symbols"
-                        }
-                    }
-                ]
-            }
-        ],
-        "feature": {
-            "desc": [
-                "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.",
-                "You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple."
-            ],
-            "name": "Shelter of the Faithful"
-        },
-        "personality_traits": {
-            "from": [
-                "I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.",
-                "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",
-                "I see omens in every event and action. The gods try to speak to us, we just need to listen.",
-                "Nothing can shake my optimistic attitude.",
-                "I quote (or misquote) sacred texts and proverbs in almost every situation.",
-                "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.",
-                "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.",
-                "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
-            ],
-            "choose": 2,
-            "type": "personality_traits"
-        },
-        "ideals": {
-            "from": [
-                {
-                    "desc": "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",
-                    "alignments": [
-                        {
-                            "index": "lawful-good",
-                            "name": "Lawful Good",
-                            "url": "api/alignments/lawful-good"
-                        },
-                        {
-                            "index": "lawful-neutral",
-                            "name": "Lawful Neutral",
-                            "url": "api/alignments/lawful-neutral"
-                        },
-                        {
-                            "index": "lawful-evil",
-                            "name": "Lawful Evil",
-                            "url": "api/alignments/lawful-evil"
-                        }
-                    ]
-                },
-                {
-                    "desc": "Charity. I always try to help those in need, no matter what the personal cost.",
-                    "alignments": [
-                        {
-                            "index": "lawful-good",
-                            "name": "Lawful Good",
-                            "url": "api/alignments/lawful-good"
-                        },
-                        {
-                            "index": "neutral-good",
-                            "name": "Neutral Good",
-                            "url": "api/alignments/neutral-good"
-                        },
-                        {
-                            "index": "chaotic-good",
-                            "name": "Chaotic Good",
-                            "url": "api/alignments/chaotic-good"
-                        }
-                    ]
-                },
-                {
-                    "desc": "Change. We must help bring about the changes the gods are constantly working in the world.",
-                    "alignments": [
-                        {
-                            "index": "chaotic-good",
-                            "name": "Chaotic Good",
-                            "url": "api/alignments/chaotic-good"
-                        },
-                        {
-                            "index": "chaotic-neutral",
-                            "name": "Chaotic Neutral",
-                            "url": "api/alignments/chaotic-neutral"
-                        },
-                        {
-                            "index": "chaotic-evil",
-                            "name": "Chaotic Evil",
-                            "url": "api/alignments/chaotic-evil"
-                        }
-                    ]
-                },
-                {
-                    "desc": "Power. I hope to one day rise to the top of my faith's religious hierarchy.",
-                    "alignments": [
-                        {
-                            "index": "lawful-good",
-                            "name": "Lawful Good",
-                            "url": "api/alignments/lawful-good"
-                        },
-                        {
-                            "index": "lawful-neutral",
-                            "name": "Lawful Neutral",
-                            "url": "api/alignments/lawful-neutral"
-                        },
-                        {
-                            "index": "lawful-evil",
-                            "name": "Lawful Evil",
-                            "url": "api/alignments/lawful-evil"
-                        }
-                    ]
-                },
-                {
-                    "desc": "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.",
-                    "alignments": [
-                        {
-                            "index": "lawful-good",
-                            "name": "Lawful Good",
-                            "url": "api/alignments/lawful-good"
-                        },
-                        {
-                            "index": "lawful-neutral",
-                            "name": "Lawful Neutral",
-                            "url": "api/alignments/lawful-neutral"
-                        },
-                        {
-                            "index": "lawful-evil",
-                            "name": "Lawful Evil",
-                            "url": "api/alignments/lawful-evil"
-                        }
-                    ]
-                },
-                {
-                    "desc": "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings.",
-                    "alignments": [
-                        {
-                            "index": "lawful-good",
-                            "name": "Lawful Good",
-                            "url": "api/alignments/lawful-good"
-                        },
-                        {
-                            "index": "neutral-good",
-                            "name": "Neutral Good",
-                            "url": "api/alignments/neutral-good"
-                        },
-                        {
-                            "index": "chaotic-good",
-                            "name": "Chaotic Good",
-                            "url": "api/alignments/chaotic-good"
-                        },
-                        {
-                            "index": "lawful-neutral",
-                            "name": "Lawful Neutral",
-                            "url": "api/alignments/lawful-neutral"
-                        },
-                        {
-                            "index": "neutral",
-                            "name": "Neutral",
-                            "url": "api/alignments/neutral"
-                        },
-                        {
-                            "index": "chaotic-neutral",
-                            "name": "Chaotic Neutral",
-                            "url": "api/alignments/chaotic-neutral"
-                        },
-                        {
-                            "index": "lawful-evil",
-                            "name": "Lawful Evil",
-                            "url": "api/alignments/lawful-evil"
-                        },
-                        {
-                            "index": "neutral-evil",
-                            "name": "Neutral Evil",
-                            "url": "api/alignments/neutral-evil"
-                        },
-                        {
-                            "index": "chaotic-evil",
-                            "name": "Chaotic Evil",
-                            "url": "api/alignments/chaotic-evil"
-                        }
-                    ]
-                }
-            ],
-            "choose": 1,
-            "type": "ideals"
-        },
-        "bonds": {
-            "from": [
-                "I would die to recover an ancient relic of my faith that was lost long ago.",
-                "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic.",
-                "I owe my life to the priest who took me in when my parents died.",
-                "Everything I do is for the common people.",
-                "I will do anything to protect the temple where I served.",
-                "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy."
-            ],
-            "choose": 1,
-            "type": "bonds"
-        },
-        "flaws": {
-            "from": [
-                "I judge others harshly, and myself even more severely.",
-                "I put too much trust in those who wield power within my temple's hierarchy.",
-                "My piety sometimes leads me to blindly trust those that profess faith in my god.",
-                "I am inflexible in my thinking.",
-                "I am suspicious of strangers and expect the worst of them.",
-                "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
-            ],
-            "choose": 1,
-            "type": "flaws"
-        }
-    }
-]
+#         {   "index": "acolyte",
+#             "name": "Acolyte",
+#             "starting_proficiencies": [
+#                 {
+#                     "index": "skill-insight",
+#                     "name": "Skill: Insight",
+#                     "url": "/api/proficiencies/skill-insight"
+#                 },
+#                 {
+#                     "index": "skill-religion",
+#                     "name": "Skill: Religion",
+#                     "url": "/api/proficiencies/skill-religion"
+#                 }
+#             ],
+#             "language_options": {
+#                 "from": [
+#                     {
+#                         "index": "common",
+#                         "name": "Common",
+#                         "url": "/api/languages/common"
+#                     },
+#                     {
+#                         "index": "dwarvish",
+#                         "name": "Dwarvish",
+#                         "url": "/api/languages/dwarvish"
+#                     },
+#                     {
+#                         "index": "elvish",
+#                         "name": "Elvish",
+#                         "url": "/api/languages/elvish"
+#                     },
+#                     {
+#                         "index": "giant",
+#                         "name": "Giant",
+#                         "url": "/api/languages/giant"
+#                     },
+#                     {
+#                         "index": "gnomish",
+#                         "name": "Gnomish",
+#                         "url": "/api/languages/gnomish"
+#                     },
+#                     {
+#                         "index": "goblin",
+#                         "name": "Goblin",
+#                         "url": "/api/languages/goblin"
+#                     },
+#                     {
+#                         "index": "halfling",
+#                         "name": "Halfling",
+#                         "url": "/api/languages/halfling"
+#                     },
+#                     {
+#                         "index": "orc",
+#                         "name": "Orc",
+#                         "url": "/api/languages/orc"
+#                     },
+#                     {
+#                         "index": "abyssal",
+#                         "name": "Abyssal",
+#                         "url": "/api/languages/abyssal"
+#                     },
+#                     {
+#                         "index": "celestial",
+#                         "name": "Celestial",
+#                         "url": "/api/languages/celestial"
+#                     },
+#                     {
+#                         "index": "draconic",
+#                         "name": "Draconic",
+#                         "url": "/api/languages/draconic"
+#                     },
+#                     {
+#                         "index": "deep-speech",
+#                         "name": "Deep Speech",
+#                         "url": "/api/languages/deep-speech"
+#                     },
+#                     {
+#                         "index": "infernal",
+#                         "name": "Infernal",
+#                         "url": "/api/languages/infernal"
+#                     },
+#                     {
+#                         "index": "primordial",
+#                         "name": "Primordial",
+#                         "url": "/api/languages/primordial"
+#                     },
+#                     {
+#                         "index": "sylvan",
+#                         "name": "Sylvan",
+#                         "url": "/api/languages/sylvan"
+#                     },
+#                     {
+#                         "index": "undercommon",
+#                         "name": "Undercommon",
+#                         "url": "/api/languages/undercommon"
+#                     }
+#                 ],
+#                 "choose": 2,
+#                 "type": "languages"
+#             },
+#             "starting_equipment": [
+#                 {
+#                     "equipment": {
+#                         "index": "clothes-common",
+#                         "name": "Clothes, common",
+#                         "url": "/api/equipment/clothes-common"
+#                     },
+#                     "quantity": 1
+#                 },
+#                 {
+#                     "equipment": {
+#                         "index": "pouch",
+#                         "name": "Pouch",
+#                         "url": "/api/equipment/pouch"
+#                     },
+#                     "quantity": 1
+#                 }
+#             ],
+#             "starting_equipment_options": [
+#                 {
+#                     "choose": 1,
+#                     "type": "equipment",
+#                     "from": [
+#                     {
+#                         "equipment_category": {
+#                             "index": "holy-symbols",
+#                             "name": "Holy Symbols",
+#                             "url": "/api/equipment-categories/holy-symbols"
+#                         }
+#                     }
+#                 ]
+#             }
+#         ],
+#         "feature": {
+#             "desc": [
+#                 "As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.",
+#                 "You might also have ties to a specific temple dedicated to your chosen deity or pantheon, and you have a residence there. This could be the temple where you used to serve, if you remain on good terms with it, or a temple where you have found a new home. While near your temple, you can call upon the priests for assistance, provided the assistance you ask for is not hazardous and you remain in good standing with your temple."
+#             ],
+#             "name": "Shelter of the Faithful"
+#         },
+#         "personality_traits": {
+#             "from": [
+#                 "I idolize a particular hero of my faith, and constantly refer to that person's deeds and example.",
+#                 "I can find common ground between the fiercest enemies, empathizing with them and always working toward peace.",
+#                 "I see omens in every event and action. The gods try to speak to us, we just need to listen.",
+#                 "Nothing can shake my optimistic attitude.",
+#                 "I quote (or misquote) sacred texts and proverbs in almost every situation.",
+#                 "I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods.",
+#                 "I've enjoyed fine food, drink, and high society among my temple's elite. Rough living grates on me.",
+#                 "I've spent so long in the temple that I have little practical experience dealing with people in the outside world."
+#             ],
+#             "choose": 2,
+#             "type": "personality_traits"
+#         },
+#         "ideals": {
+#             "from": [
+#                 {
+#                     "desc": "Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld.",
+#                     "alignments": [
+#                         {
+#                             "index": "lawful-good",
+#                             "name": "Lawful Good",
+#                             "url": "api/alignments/lawful-good"
+#                         },
+#                         {
+#                             "index": "lawful-neutral",
+#                             "name": "Lawful Neutral",
+#                             "url": "api/alignments/lawful-neutral"
+#                         },
+#                         {
+#                             "index": "lawful-evil",
+#                             "name": "Lawful Evil",
+#                             "url": "api/alignments/lawful-evil"
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "desc": "Charity. I always try to help those in need, no matter what the personal cost.",
+#                     "alignments": [
+#                         {
+#                             "index": "lawful-good",
+#                             "name": "Lawful Good",
+#                             "url": "api/alignments/lawful-good"
+#                         },
+#                         {
+#                             "index": "neutral-good",
+#                             "name": "Neutral Good",
+#                             "url": "api/alignments/neutral-good"
+#                         },
+#                         {
+#                             "index": "chaotic-good",
+#                             "name": "Chaotic Good",
+#                             "url": "api/alignments/chaotic-good"
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "desc": "Change. We must help bring about the changes the gods are constantly working in the world.",
+#                     "alignments": [
+#                         {
+#                             "index": "chaotic-good",
+#                             "name": "Chaotic Good",
+#                             "url": "api/alignments/chaotic-good"
+#                         },
+#                         {
+#                             "index": "chaotic-neutral",
+#                             "name": "Chaotic Neutral",
+#                             "url": "api/alignments/chaotic-neutral"
+#                         },
+#                         {
+#                             "index": "chaotic-evil",
+#                             "name": "Chaotic Evil",
+#                             "url": "api/alignments/chaotic-evil"
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "desc": "Power. I hope to one day rise to the top of my faith's religious hierarchy.",
+#                     "alignments": [
+#                         {
+#                             "index": "lawful-good",
+#                             "name": "Lawful Good",
+#                             "url": "api/alignments/lawful-good"
+#                         },
+#                         {
+#                             "index": "lawful-neutral",
+#                             "name": "Lawful Neutral",
+#                             "url": "api/alignments/lawful-neutral"
+#                         },
+#                         {
+#                             "index": "lawful-evil",
+#                             "name": "Lawful Evil",
+#                             "url": "api/alignments/lawful-evil"
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "desc": "Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well.",
+#                     "alignments": [
+#                         {
+#                             "index": "lawful-good",
+#                             "name": "Lawful Good",
+#                             "url": "api/alignments/lawful-good"
+#                         },
+#                         {
+#                             "index": "lawful-neutral",
+#                             "name": "Lawful Neutral",
+#                             "url": "api/alignments/lawful-neutral"
+#                         },
+#                         {
+#                             "index": "lawful-evil",
+#                             "name": "Lawful Evil",
+#                             "url": "api/alignments/lawful-evil"
+#                         }
+#                     ]
+#                 },
+#                 {
+#                     "desc": "Aspiration. I seek to prove myself worthy of my god's favor by matching my actions against his or her teachings.",
+#                     "alignments": [
+#                         {
+#                             "index": "lawful-good",
+#                             "name": "Lawful Good",
+#                             "url": "api/alignments/lawful-good"
+#                         },
+#                         {
+#                             "index": "neutral-good",
+#                             "name": "Neutral Good",
+#                             "url": "api/alignments/neutral-good"
+#                         },
+#                         {
+#                             "index": "chaotic-good",
+#                             "name": "Chaotic Good",
+#                             "url": "api/alignments/chaotic-good"
+#                         },
+#                         {
+#                             "index": "lawful-neutral",
+#                             "name": "Lawful Neutral",
+#                             "url": "api/alignments/lawful-neutral"
+#                         },
+#                         {
+#                             "index": "neutral",
+#                             "name": "Neutral",
+#                             "url": "api/alignments/neutral"
+#                         },
+#                         {
+#                             "index": "chaotic-neutral",
+#                             "name": "Chaotic Neutral",
+#                             "url": "api/alignments/chaotic-neutral"
+#                         },
+#                         {
+#                             "index": "lawful-evil",
+#                             "name": "Lawful Evil",
+#                             "url": "api/alignments/lawful-evil"
+#                         },
+#                         {
+#                             "index": "neutral-evil",
+#                             "name": "Neutral Evil",
+#                             "url": "api/alignments/neutral-evil"
+#                         },
+#                         {
+#                             "index": "chaotic-evil",
+#                             "name": "Chaotic Evil",
+#                             "url": "api/alignments/chaotic-evil"
+#                         }
+#                     ]
+#                 }
+#             ],
+#             "choose": 1,
+#             "type": "ideals"
+#         },
+#         "bonds": {
+#             "from": [
+#                 "I would die to recover an ancient relic of my faith that was lost long ago.",
+#                 "I will someday get revenge on the corrupt temple hierarchy who branded me a heretic.",
+#                 "I owe my life to the priest who took me in when my parents died.",
+#                 "Everything I do is for the common people.",
+#                 "I will do anything to protect the temple where I served.",
+#                 "I seek to preserve a sacred text that my enemies consider heretical and seek to destroy."
+#             ],
+#             "choose": 1,
+#             "type": "bonds"
+#         },
+#         "flaws": {
+#             "from": [
+#                 "I judge others harshly, and myself even more severely.",
+#                 "I put too much trust in those who wield power within my temple's hierarchy.",
+#                 "My piety sometimes leads me to blindly trust those that profess faith in my god.",
+#                 "I am inflexible in my thinking.",
+#                 "I am suspicious of strangers and expect the worst of them.",
+#                 "Once I pick a goal, I become obsessed with it to the detriment of everything else in my life."
+#             ],
+#             "choose": 1,
+#             "type": "flaws"
+#         }
+#     }
+# ]
 
-backgrounds.each do |backgrounds|
-    Background.create(name: backgrounds.name , starting_proficiencies: backgrounds.starting_proficiencies , language_options: backgrounds.language_options , starting_equipment: backgrounds.starting_equipment , starting_equipment_options: backgrounds.starting_equipment_options , feature: backgrounds.feature , personality_traits: backgrounds.personality_traits , ideals: backgrounds.ideals , bonds: backgrounds.bonds , flaws: backgrounds.flaws , url: backgrounds.url )
-end
+# backgrounds.each do |backgrounds|
+#     Background.create(name: backgrounds.name , starting_proficiencies: backgrounds.starting_proficiencies , language_options: backgrounds.language_options , starting_equipment: backgrounds.starting_equipment , starting_equipment_options: backgrounds.starting_equipment_options , feature: backgrounds.feature , personality_traits: backgrounds.personality_traits , ideals: backgrounds.ideals , bonds: backgrounds.bonds , flaws: backgrounds.flaws , url: backgrounds.url )
+# end
 
-puts "backgrounds done"
+# puts "backgrounds done"
 
 # check the tables for classes and for backgrounds 

@@ -1,3 +1,4 @@
 class CharacterBackground < ApplicationRecord
-    has_many :background
+    belongs_to :background
+    belongs_to :character_sheet
 end
