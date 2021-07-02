@@ -1751,25 +1751,14 @@ jobs = [
             {
                 "choose": 1,
                 "type": "equipment",
-                "from": [
-                {
-                    "0": {
+                "from": [{
                     "equipment": {
-                        "index": "crossbow-light",
-                        "name": "Crossbow, light",
-                        "url": "/api/equipment/crossbow-light"
+                        
+                        "name": "Crossbow, light & 20 bolts",
+                        
                     },
                     "quantity": 1
                     },
-                    "1": {
-                    "equipment": {
-                        "index": "crossbow-bolt",
-                        "name": "Crossbow bolt",
-                        "url": "/api/equipment/crossbow-bolt"
-                    },
-                    "quantity": 20
-                    }
-                },
                 {
                     "equipment_option": {
                     "choose": 1,
@@ -1812,7 +1801,7 @@ jobs = [
                 "type": "equipment",
                 "from": [
                 {
-                    "equipment_category": {
+                    "equipment": {
                     "index": "holy-symbols",
                     "name": "Holy Symbols",
                     "url": "/api/equipment-categories/holy-symbols"
@@ -2092,7 +2081,7 @@ jobs = [
                 "type": "equipment",
                 "from": [
                 {
-                    "equipment_category": {
+                    "equipment": {
                     "index": "druidic-foci",
                     "name": "Druidic Foci",
                     "url": "/api/equipment-categories/druidic-foci"
@@ -2257,62 +2246,30 @@ jobs = [
                     "url": "/api/equipment/chain-mail"
                     },
                     "quantity": 1
-                },
-                {
-                    "0": {
+                },{
                     "equipment": {
-                        "index": "leather",
-                        "name": "Leather",
-                        "url": "/api/equipment/leather"
+                   
+                    "name": "leather, longbow & 20 arrows",
+                    
                     },
                     "quantity": 1
-                    },
-                    "1": {
-                    "equipment": {
-                        "index": "longbow",
-                        "name": "Longbow",
-                        "url": "/api/equipment/longbow"
-                    },
-                    "quantity": 1
-                    },
-                    "2": {
-                    "equipment": {
-                        "index": "arrow",
-                        "name": "Arrow",
-                        "url": "/api/equipment/arrow"
-                    },
-                    "quantity": 20
-                    }
                 }
+                
                 ]
             },
             {
                 "choose": 1,
                 "type": "equipment",
                 "from": [
-                {
-                    "0": {
-                    "equipment": {
-                        "index": "shield",
-                        "name": "Shield",
-                        "url": "/api/equipment/shield"
+                    {
+                        "equipment": {
+                       
+                        "name": "Shield, Martial Weapon",
+                        
+                        },
+                        "quantity": 1
                     },
-                    "quantity": 1
-                    },
-                    "1": {
-                    "equipment_option": {
-                        "choose": 1,
-                        "type": "equipment",
-                        "from": {
-                        "equipment_category": {
-                            "index": "martial-weapons",
-                            "name": "Martial Weapons",
-                            "url": "/api/equipment-categories/martial-weapons"
-                        }
-                        }
-                    }
-                    }
-                },
+              
                 {
                     "equipment_option": {
                     "choose": 2,
@@ -2341,23 +2298,13 @@ jobs = [
                     "quantity": 2
                 },
                 {
-                    "0": {
                     "equipment": {
-                        "index": "crossbow-light",
-                        "name": "Crossbow, light",
-                        "url": "/api/equipment/crossbow-light"
+                        
+                        "name": "Crossbow, light & 20 bolts",
+                        
                     },
                     "quantity": 1
                     },
-                    "1": {
-                    "equipment": {
-                        "index": "crossbow-bolt",
-                        "name": "Crossbow bolt",
-                        "url": "/api/equipment/crossbow-bolt"
-                    },
-                    "quantity": 20
-                    }
-                }
                 ]
             },
             {
@@ -2779,30 +2726,15 @@ jobs = [
             {
                 "choose": 1,
                 "type": "equipment",
-                "from": [
-                {
-                    "0": {
+                "from": [ {
                     "equipment": {
-                        "index": "shield",
-                        "name": "Shield",
-                        "url": "/api/equipment/shield"
+                    
+                    "name": "Shield, Martial Weapon",
+                    
                     },
                     "quantity": 1
-                    },
-                    "1": {
-                    "equipment_option": {
-                        "choose": 1,
-                        "type": "equipment",
-                        "from": {
-                        "equipment_category": {
-                            "name": "Martial Weapons",
-                            "index": "martial-weapons",
-                            "url": "/api/equipment-categories/martial-weapons"
-                        }
-                        }
-                    }
-                    }
                 },
+                
                 {
                     "equipment_option": {
                     "choose": 2,
@@ -2872,7 +2804,7 @@ jobs = [
                 "type": "equipment",
                 "from": [
                 {
-                    "equipment_category": {
+                    "equipment": {
                     "index": "holy-symbols",
                     "name": "Holy Symbols",
                     "url": "/api/equipment-categories/holy-symbols"
@@ -3317,7 +3249,14 @@ jobs = [
             {
                 "choose": 1,
                 "type": "equipment",
-                "from": [
+                "from": [  {
+                    "equipment": {
+                    
+                    "name": "Shortbow & 20 arrows",
+                    
+                    },
+                    "quantity": 1
+                },
                 {
                     "equipment": {
                     "index": "shortsword",
@@ -3325,25 +3264,8 @@ jobs = [
                     "url": "/api/equipment/shortsword"
                     },
                     "quantity": 1
-                },
-                {
-                    "0": {
-                    "equipment": {
-                        "index": "shortbow",
-                        "name": "Shortbow",
-                        "url": "/api/equipment/shortbow"
-                    },
-                    "quantity": 1
-                    },
-                    "1": {
-                    "equipment": {
-                        "index": "arrow",
-                        "name": "Arrow",
-                        "url": "/api/equipment/arrow"
-                    },
-                    "quantity": 20
-                    }
                 }
+                
                 ]
             },
             {
@@ -3479,24 +3401,15 @@ jobs = [
                 "choose": 1,
                 "type": "equipment",
                 "from": [
-                {
-                    "0": {
-                    "equipment": {
-                        "index": "crossbow-light",
-                        "name": "Crossbow, light",
-                        "url": "/api/equipment/crossbow-light"
-                    },
-                    "quantity": 1
-                    },
-                    "1": {
-                    "equipment": {
-                        "index": "crossbow-bolt",
-                        "name": "Crossbow bolt",
-                        "url": "/api/equipment/crossbow-bolt"
-                    },
-                    "quantity": 20
-                    }
-                },
+                    {
+                        "equipment": {
+                            
+                            "name": "Crossbow, light & 20 bolts",
+                            
+                        },
+                        "quantity": 1
+                        },
+               
                 {
                     "equipment_option": {
                     "choose": 1,
@@ -3710,25 +3623,14 @@ jobs = [
             {
                 "choose": 1,
                 "type": "equipment",
-                "from": [
-                {
-                    "0": {
+                "from": [{
                     "equipment": {
-                        "index": "crossbow-light",
-                        "name": "Crossbow, light",
-                        "url": "/api/equipment/crossbow-light"
+                        
+                        "name": "Crossbow, light & 20 bolts",
+                        
                     },
                     "quantity": 1
                     },
-                    "1": {
-                    "equipment": {
-                        "index": "crossbow-bolt",
-                        "name": "Crossbow bolt",
-                        "url": "/api/equipment/crossbow-bolt"
-                    },
-                    "quantity": 20
-                    }
-                },
                 {
                     "equipment_option": {
                     "choose": 1,
@@ -3798,7 +3700,7 @@ jobs = [
                 "type": "equipment",
                 "from": [
                 {
-                    "equipment_category": {
+                    "equipment": {
                     "index": "simple-weapons",
                     "name": "Simple Weapons",
                     "url": "/api/equipment-categories/simple-weapons"
@@ -4099,30 +4001,94 @@ jobs.each do |job|
         proficiency_choices_list += "no options"
     end
 
-
     proficiencies_list = ""
     job[:proficiencies].each do |prof|
         proficiencies_list += prof[:name] + ", "
     end
-    
-
-    # "saving_throws": [
-    #     {
-    #         "index": "int",
-    #         "name": "INT",
-    #         "url": "/api/ability-scores/int"
-    #     },
-    #     {
-    #         "index": "wis",
-    #         "name": "WIS",
-    #         "url": "/api/ability-scores/wis"
-    #     }
-    #     ],
 
     saving_throws_list = ""
     job[:saving_throws].each do |prof|
         saving_throws_list += prof[:name] + ", "
     end
+
+
+    # "starting_equipment": [
+    #     {
+    #         "equipment": {
+    #         "index": "leather",
+    #         "name": "Leather",
+    #         "url": "/api/equipment/leather"
+    #         },
+    #         "quantity": 1
+    #     },
+    #     {
+    #         "equipment": {
+    #         "index": "dagger",
+    #         "name": "Dagger",
+    #         "url": "/api/equipment/dagger"
+    #         },
+    #         "quantity": 2
+    #     },
+    #     {
+    #         "equipment": {
+    #         "index": "thieves-tools",
+    #         "name": "Thieves' tools",
+    #         "url": "/api/equipment/thieves-tools"
+    #         },
+    #         "quantity": 1
+    #     }
+    #     ],
+
+    starting_equipment_list = ""
+    job[:starting_equipment].each do |equip|
+        starting_equipment_list += equip[:equipment][:name] 
+    end
+# need to add quantity to the equipment list isnt showing up properly im getting close with "- #{[:quantity].to_s}"
+
+# ==============================================================================================
+
+
+
+
+# proficiency_choices_list = ""
+# if job.key?(:proficiency_choices)
+#         proficiency_choices_list += "Choose + #{job[:proficiency_choices][0][:choose].to_s}" + " proficencies from:"
+#     job[:proficiency_choices][0][:from].each do |profs|
+#         proficiency_choices_list += profs[:name] + ", "
+#     end
+# else 
+#     proficiency_choices_list += "no options"
+# end
+
+# restaurant_menu = { "Ramen" => 3, "Dal Makhani" => 4, "Coffee" => 2 }         <---------- example idea from internet maybe something like this
+# restaurant_menu.each do | item, price |
+#   puts "#{item}: $#{price}"
+# end
+
+
+# Ramen: $3
+# Dal Makhani: $4                                       <----- returns this 
+# Coffee: $2
+
+    starting_equipment_options_list = ""
+    if job.key?(:starting_equipment_options)
+            # starting_equipment_options_list += "Choose + #{job[:starting_equipment_options][0][:choose].to_s}" + " of each set"
+            job[:starting_equipment_options].each do |option|
+                starting_equipment_options_list += "Choose + #{option[:choose].to_s}" + " of each set "
+                option[:from].each do |picks|
+                # puts picks
+                if picks.key?(:equipment)
+                starting_equipment_options_list += picks[:equipment][:name] + ' '
+                else
+        puts picks
+                    starting_equipment_options_list += picks[:equipment_option][:from][:equipment_category][:name] + ' '
+                end
+            end
+           end
+        else
+            starting_equipment_options_list = "none"
+        end
+
 
 
 
@@ -4131,8 +4097,8 @@ jobs.each do |job|
         proficiency_choices: proficiency_choices_list,
         proficiencies: proficiencies_list,
         saving_throws: saving_throws_list,
-        # starting_equipment: job.starting_equipment,
-        # starting_equipment_options: job.starting_equipment_options,
+        starting_equipment: starting_equipment_list,
+        starting_equipment_options: starting_equipment_options_list,
         # class_levels: job.class_levels,
         # subclasses: job.subclasses,
         # spellcasting: job.spellcasting,
@@ -4269,7 +4235,7 @@ backgrounds = [
                     "type": "equipment",
                     "from": [
                     {
-                        "equipment_category": {
+                        "equipment": {
                             "index": "holy-symbols",
                             "name": "Holy Symbols",
                             "url": "/api/equipment-categories/holy-symbols"
