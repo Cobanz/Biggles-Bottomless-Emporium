@@ -24,21 +24,21 @@ ActiveRecord::Schema.define(version: 2021_06_30_165320) do
 
   create_table "character_backgrounds", force: :cascade do |t|
     t.integer "background_id"
-    t.integer "character_id"
+    t.integer "character_sheet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "character_classes", force: :cascade do |t|
     t.integer "job_id"
-    t.integer "character_id"
+    t.integer "character_sheet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "character_races", force: :cascade do |t|
     t.integer "race_id"
-    t.integer "character_id"
+    t.integer "character_sheet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

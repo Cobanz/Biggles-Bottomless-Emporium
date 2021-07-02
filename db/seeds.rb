@@ -4438,5 +4438,16 @@ temp_backgrounds.each do |temp|
     )
 end
 
-
 puts "backgrounds done"
+
+
+admin = User.create!(name: 'admin', password_digest: 'admin') 
+
+
+
+character1 = CharacterSheet.create!( user_id: admin.id, name: "Coban", image: nil , personal_bio: "stronges man in the world")
+
+
+class1 = CharacterClass.create!(job_id:Job.all.first.id, character_sheet_id:character1.id)
+background1 = CharacterBackground.create!( background_id:Background.all.first.id, character_sheet_id:character1.id)
+race1 = CharacterRace.create!(race_id:Race.all.first.id, character_sheet_id:character1.id)
