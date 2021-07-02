@@ -4011,14 +4011,10 @@ jobs.each do |job|
         saving_throws_list += prof[:name] + ", "
     end
 
-
     starting_equipment_list = ""
     job[:starting_equipment].each do |equip|
         starting_equipment_list += equip[:equipment][:name] + "- #{equip[:quantity].to_s}, "
     end
-
-
-
 
 
     starting_equipment_options_list = ""
@@ -4038,21 +4034,40 @@ jobs.each do |job|
         starting_equipment_options_list = "none"
     end
 
+    can_cast = ""
+    if job.key?(:spellcasting)
+        can_cast += "Spell Casting Modifier is " + job[:spellcasting][:spellcasting_ability][:name]
+    else
+        can_cast = "Can Not Cast Spells"
+    end
+    
+    
+       #     "spells": "/api/classes/wizard/spells",
+       #     "url": "/api/classes/wizard"
+       # }
+
+    has_spell_list = ""
+    if job.key?(:spells)
+        has_spell_list += "See your spells at " + job[:spells]
+    else
+        has_spell_list = "No Spells"
+    end
 
 
 
-    Job.create(name: job[:name],
+    Job.create(
+        name: job[:name],
         hit_die: job[:hit_die],
         proficiency_choices: proficiency_choices_list,
         proficiencies: proficiencies_list,
         saving_throws: saving_throws_list,
         starting_equipment: starting_equipment_list,
         starting_equipment_options: starting_equipment_options_list,
-        # class_levels: job.class_levels,
+        class_levels: "To see class levels check out" + job[:class_levels],
        
-        # spellcasting: job.spellcasting,
-        # spells: job.spells,
-        # url: job.url
+        spellcasting: can_cast,
+        spells: has_spell_list,
+        url: "For full Class info visit" + job[:url]
     )
 end
 
@@ -4399,20 +4414,45 @@ backgrounds = [
 
 
 temp_backgrounds = [
+
     {
     "name": "Acolyte",
     "feature": "Shelter of the Faithful - As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.",
     },
+
     {
-        "name": "Guild Artisan",
-        "feature": "asdf asdf ",
-        },
+    "name": "Criminal",
+    "feature": "Criminal Contact - You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you. ",
+    },
+
+    {
+    "name": "Hermit",
+    "feature": "Discovery - The quiet seclusion of your extended hermitage gave you access to a unique and powerful discovery. The exact nature of this revelation depends on the nature of your seclusion. It might be a great truth about the cosmos, the deities, the powerful beings of the outer planes, or the forces of nature. It could be a site that no one else has ever seen. You might have uncovered a fact that has long been forgotten, or unearthed some relic of the past that could rewrite history. It might be information that would be damaging to the people who or consigned you to exile, and hence the reason for your return to society. ",
+    },
+
+    {
+     "name": "Knight",
+     "feature": "Retainers - You have the service of three retainers loyal to your family. These retainers can be attendants or messengers, and one might be a majordomo. Your retainers are commoners who can perform mundane tasks for you, but they do not fight for you, will not follow you into obviously dangerous areas (such as dungeons), and will leave if they are frequently endangered or abused",
+    },
+
+    {
+    "name": "Outlander",
+    "feature": "Wanderer - You have an excellent memory for maps and geography, and you can always recall the general layout of terrain, settlements, and other features around you. In addition, you can find food and fresh water for yourself and up to five other people each day, provided that the land offers berries, small game, water, and so forth. ",
+    }
 
 ]
+
+temp_backgrounds.each do |temp|
+    Background.create!(
+        name: temp[:name],
+        feature: temp[:feature]
+    )
+end
+
 # backgrounds.each do |backgrounds|
 #     Background.create(name: backgrounds.name , starting_proficiencies: backgrounds.starting_proficiencies , language_options: backgrounds.language_options , starting_equipment: backgrounds.starting_equipment , starting_equipment_options: backgrounds.starting_equipment_options , feature: backgrounds.feature , personality_traits: backgrounds.personality_traits , ideals: backgrounds.ideals , bonds: backgrounds.bonds , flaws: backgrounds.flaws , url: backgrounds.url )
 # end
 
-# puts "backgrounds done"
+puts "backgrounds done"
 
 # check the tables for classes and for backgrounds 
