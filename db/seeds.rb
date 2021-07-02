@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 Race.destroy_all
 Job.destroy_all
@@ -992,8 +985,6 @@ races = [
     },
 ]
 
-# something like this
-# races do each || = Race.create()
 
 races.each do |race|
     ability_list = ""
@@ -4053,8 +4044,6 @@ jobs.each do |job|
         has_spell_list = "No Spells"
     end
 
-
-
     Job.create(
         name: job[:name],
         hit_die: job[:hit_die],
@@ -4449,10 +4438,5 @@ temp_backgrounds.each do |temp|
     )
 end
 
-# backgrounds.each do |backgrounds|
-#     Background.create(name: backgrounds.name , starting_proficiencies: backgrounds.starting_proficiencies , language_options: backgrounds.language_options , starting_equipment: backgrounds.starting_equipment , starting_equipment_options: backgrounds.starting_equipment_options , feature: backgrounds.feature , personality_traits: backgrounds.personality_traits , ideals: backgrounds.ideals , bonds: backgrounds.bonds , flaws: backgrounds.flaws , url: backgrounds.url )
-# end
 
 puts "backgrounds done"
-
-# check the tables for classes and for backgrounds 
