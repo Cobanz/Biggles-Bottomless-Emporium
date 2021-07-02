@@ -4012,82 +4012,31 @@ jobs.each do |job|
     end
 
 
-    # "starting_equipment": [
-    #     {
-    #         "equipment": {
-    #         "index": "leather",
-    #         "name": "Leather",
-    #         "url": "/api/equipment/leather"
-    #         },
-    #         "quantity": 1
-    #     },
-    #     {
-    #         "equipment": {
-    #         "index": "dagger",
-    #         "name": "Dagger",
-    #         "url": "/api/equipment/dagger"
-    #         },
-    #         "quantity": 2
-    #     },
-    #     {
-    #         "equipment": {
-    #         "index": "thieves-tools",
-    #         "name": "Thieves' tools",
-    #         "url": "/api/equipment/thieves-tools"
-    #         },
-    #         "quantity": 1
-    #     }
-    #     ],
-
     starting_equipment_list = ""
     job[:starting_equipment].each do |equip|
-        starting_equipment_list += equip[:equipment][:name] 
+        starting_equipment_list += equip[:equipment][:name] + "- #{equip[:quantity].to_s}, "
     end
-# need to add quantity to the equipment list isnt showing up properly im getting close with "- #{[:quantity].to_s}"
-
-# ==============================================================================================
 
 
 
 
-# proficiency_choices_list = ""
-# if job.key?(:proficiency_choices)
-#         proficiency_choices_list += "Choose + #{job[:proficiency_choices][0][:choose].to_s}" + " proficencies from:"
-#     job[:proficiency_choices][0][:from].each do |profs|
-#         proficiency_choices_list += profs[:name] + ", "
-#     end
-# else 
-#     proficiency_choices_list += "no options"
-# end
-
-# restaurant_menu = { "Ramen" => 3, "Dal Makhani" => 4, "Coffee" => 2 }         <---------- example idea from internet maybe something like this
-# restaurant_menu.each do | item, price |
-#   puts "#{item}: $#{price}"
-# end
-
-
-# Ramen: $3
-# Dal Makhani: $4                                       <----- returns this 
-# Coffee: $2
 
     starting_equipment_options_list = ""
     if job.key?(:starting_equipment_options)
-            # starting_equipment_options_list += "Choose + #{job[:starting_equipment_options][0][:choose].to_s}" + " of each set"
+ 
             job[:starting_equipment_options].each do |option|
-                starting_equipment_options_list += "Choose + #{option[:choose].to_s}" + " of each set "
-                option[:from].each do |picks|
-                # puts picks
+                    starting_equipment_options_list += "Choose + #{option[:choose].to_s}" + " of each set "
+                    option[:from].each do |picks|
                 if picks.key?(:equipment)
-                starting_equipment_options_list += picks[:equipment][:name] + ' '
+                    starting_equipment_options_list += picks[:equipment][:name] + ' '
                 else
-        puts picks
                     starting_equipment_options_list += picks[:equipment_option][:from][:equipment_category][:name] + ' '
                 end
             end
-           end
-        else
-            starting_equipment_options_list = "none"
         end
+    else
+        starting_equipment_options_list = "none"
+    end
 
 
 
@@ -4100,7 +4049,7 @@ jobs.each do |job|
         starting_equipment: starting_equipment_list,
         starting_equipment_options: starting_equipment_options_list,
         # class_levels: job.class_levels,
-        # subclasses: job.subclasses,
+       
         # spellcasting: job.spellcasting,
         # spells: job.spells,
         # url: job.url
@@ -4448,6 +4397,18 @@ backgrounds = [
     }
 ]
 
+
+temp_backgrounds = [
+    {
+    "name": "Acolyte",
+    "feature": "Shelter of the Faithful - As an acolyte, you command the respect of those who share your faith, and you can perform the religious ceremonies of your deity. You and your adventuring companions can expect to receive free healing and care at a temple, shrine, or other established presence of your faith, though you must provide any material components needed for spells. Those who share your religion will support you (but only you) at a modest lifestyle.",
+    },
+    {
+        "name": "Guild Artisan",
+        "feature": "asdf asdf ",
+        },
+
+]
 # backgrounds.each do |backgrounds|
 #     Background.create(name: backgrounds.name , starting_proficiencies: backgrounds.starting_proficiencies , language_options: backgrounds.language_options , starting_equipment: backgrounds.starting_equipment , starting_equipment_options: backgrounds.starting_equipment_options , feature: backgrounds.feature , personality_traits: backgrounds.personality_traits , ideals: backgrounds.ideals , bonds: backgrounds.bonds , flaws: backgrounds.flaws , url: backgrounds.url )
 # end
