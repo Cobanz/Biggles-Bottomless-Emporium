@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState , useHistory} from "react";
 import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
+import axios from 'axios'
 
 export const Register = (props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  
+
+
+
+
     return (
       <div className="base-container" ref={props.containerRef}>
         <div className="header">Register</div>

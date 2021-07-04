@@ -4441,7 +4441,7 @@ end
 puts "backgrounds done"
 
 
-admin = User.create!(name: 'admin', password_digest: 'admin') 
+admin = User.create!(name: 'admin', password: 'admin', password_confirmation: 'admin') 
 
 
 

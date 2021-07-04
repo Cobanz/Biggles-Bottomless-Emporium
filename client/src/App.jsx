@@ -3,10 +3,27 @@ import './App.scss';
 import { useState, useEffect } from 'react';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Login, Register } from "./componets/login/index"
+import { Register } from "./componets/login/index"
+import { Login } from "./componets/login/login"
 import { About } from './componets/About/about';
 
 const App = () => {
+
+  const [user, setUser] = useState("")
+  // const [password, setPassword] =useState("")
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((name) => {setUser(user)
+          
+        });
+      }
+    });
+  }, []);
+
+
 
   const [isLoginActive, setisLoginActive] = useState(1);
   let current = isLoginActive ? "Register" : "Login";
@@ -71,7 +88,7 @@ const App = () => {
             </Route>
 
             <Route path="/">
-              {isLoginActive && <Login containerRef={(ref) => (current = ref)} />}
+              {isLoginActive && <Login containerRef={(ref) => (current = ref)} onLogin={setUser}/>}
               {!isLoginActive && (<Register containerRef={(ref) => (current = ref)} />)}
               <RightSide current={current} currentActive={currentActive} containerRef={(ref) => (rightSide = ref)} onClick={handleActiveState.bind(this)}
               />
