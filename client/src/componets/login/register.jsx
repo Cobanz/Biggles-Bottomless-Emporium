@@ -1,6 +1,9 @@
 import React, { useState , useHistory} from "react";
 import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
-import axios from 'axios'
+// import { useAlert } from 'react-alert'
+// import { render } from 'react-dom'
+// import { transitions, positions, Provider as AlertProvider } from 'react-alert'
+// import AlertTemplate from 'react-alert-template-basic'
 
 export const Register = (props) => {
     const [name, setName] = useState("");
@@ -16,6 +19,8 @@ export const Register = (props) => {
         },
         body: JSON.stringify({name, password}),
       })
+
+      // alert.show("Oh look, an alert!"); <------ cant get this to work
       // .then((r) => {
       //   if (r.ok) {
       //     r.json().then((user)=> props.onCreate(user));

@@ -14,7 +14,7 @@ import { Exsisting } from './componets/Exsisting_Character/exsisting';
 const App = () => {
 
   const [user, setUser] = useState("")
-  // const [password, setPassword] =useState("")
+  
 
   useEffect(() => {
     // auto-login
