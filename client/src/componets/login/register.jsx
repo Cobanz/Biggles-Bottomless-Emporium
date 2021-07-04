@@ -3,8 +3,40 @@ import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/sr
 import axios from 'axios'
 
 export const Register = (props) => {
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setErrors] = useState("")
+
+    function onSubmit(e) {
+      e.preventDefault();
+      fetch('/signup', {
+        method: 'POST',
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({name, password}),
+      })
+      // .then((r) => {
+      //   if (r.ok) {
+      //     r.json().then((user)=> props.onCreate(user));
+      //   } else {
+      //     r.json().then((err) => setErrors(err.errors));
+      //   }
+      // })
+    }
+
+
+    const logName = e => {
+      setName(
+        e.target.value
+      )
+    }
+
+    const logPassword = e => {
+      setPassword(
+        e.target.value
+      )
+    }
 
 
 
@@ -18,18 +50,18 @@ export const Register = (props) => {
           </div>
           <div className="form">
             <div className="form-group">
-              <label htmlFor="username">Username</label>
-              <input type="text" name="username" placeholder="username" />
+              <label htmlFor="username">Pick A Name</label>
+              <input type="text" name="name" placeholder="Name" onChange={logName} value={name}/>
             </div>
          
             <div className="form-group">
-              <label htmlFor="password">Password</label>
-              <input type="text" name="password" placeholder="password" />
+              <label htmlFor="password">Pick A Password</label>
+              <input type="password" name="password" placeholder="password" onChange={logPassword} value={password}/>
             </div>
           </div>
         </div>
         <div className="footer">
-          <button type="button" className="btn">
+          <button type="button" className="btn" onClick={onSubmit}>
             Register
           </button>
         </div>

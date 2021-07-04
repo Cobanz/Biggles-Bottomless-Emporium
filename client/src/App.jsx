@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Register } from "./componets/login/index"
 import { Login } from "./componets/login/login"
 import { About } from './componets/About/about';
+import { User_Overview } from './componets/User_Overview/user_overview';
+import { Ask_me_anything } from './componets/AMA/ask_me_anything';
+import { New_character } from './componets/New_Character/new_character';
+import { Exsisting } from './componets/Exsisting_Character/exsisting';
 
 const App = () => {
 
@@ -61,6 +65,9 @@ const App = () => {
               <Link to="/user">User</Link>
             </li>
             <li className="nav-bar-ul-li a">
+              <Link to="/details">Character Details</Link>
+            </li>
+            <li className="nav-bar-ul-li a">
               <Link to="/new">New Character</Link>
             </li>
             <li className="nav-bar-ul-li a">
@@ -75,16 +82,23 @@ const App = () => {
           <Switch>
 
             <Route path="/new">
+              <New_character/>
             </Route>
 
             <Route path="/ask">
+              <Ask_me_anything/>
             </Route>
 
             <Route path="/user">
+              <User_Overview />
+            </Route>
+
+            <Route path="/details">
+              <Exsisting/>
             </Route>
 
             <Route path="/about">
-            <About></About>
+            <About/>
             </Route>
 
             <Route path="/">
