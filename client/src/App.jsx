@@ -8,8 +8,8 @@ import { Login } from "./componets/login/login"
 import { About } from './componets/About/about';
 import { User_Overview } from './componets/User_Overview/user_overview';
 import { Ask_me_anything } from './componets/AMA/ask_me_anything';
-import { New_character } from './componets/New_Character/new_character';
-import { Exsisting } from './componets/Exsisting_Character/exsisting';
+import { New_character } from './componets/User_Overview/New_Character/new_character';
+import { Exsisting } from './componets/User_Overview/Exsisting_Character/exsisting';
 
 const App = () => {
 
@@ -81,27 +81,27 @@ const App = () => {
 
           <Switch>
 
-            <Route path="/new">
+            <Route exact path="/new">
               <New_character/>
             </Route>
 
-            <Route path="/ask">
+            <Route exact path="/ask">
               <Ask_me_anything/>
             </Route>
 
-            <Route path="/user">
+            <Route exact path="/user">
               <User_Overview />
             </Route>
 
-            <Route path="/details">
+            <Route exact path="/details">
               <Exsisting/>
             </Route>
 
-            <Route path="/about">
+            <Route exact path="/about">
             <About/>
             </Route>
 
-            <Route path="/">
+            <Route exact path="/">
               {isLoginActive && <Login containerRef={(ref) => (current = ref)} onLogin={setUser}/>}
               {!isLoginActive && (<Register containerRef={(ref) => (current = ref)} />)}
               <RightSide current={current} currentActive={currentActive} containerRef={(ref) => (rightSide = ref)} onClick={handleActiveState.bind(this)}

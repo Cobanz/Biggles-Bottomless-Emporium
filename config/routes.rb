@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   # new character baised on user logged in
-  post "/character_sheet", to: "character_sheet#create"
+  post "/character_sheet", to: "character_sheets#create"
   # all character baised on user logged in
-  get "/character_sheet", to: "character_sheet#index"
+  get "/character_sheet", to: "character_sheets#index"
   # see one character baised on user log in
-  get "/character_sheet/:id", to: "character_sheet#show"
+  get "/character_sheet/:id", to: "character_sheets#show"
   # destroy one character baised on user log in
-  delete "/character_sheed/:id", to: "character_sheet#destroy"
+  delete "/character_sheet/:id", to: "character_sheets#destroy"
   
   # create a new user
   post "/signup", to: "users#create"
