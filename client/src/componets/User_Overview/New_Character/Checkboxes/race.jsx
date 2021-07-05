@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export function Race() {
+export function Race(props) {
   // const classes = useStyles();
-  const [state, setState] = useState({
+  const [race, setCharacter_race] = useState({
     dragonborn: false,
     dwarf: false,
     elf: false,
@@ -32,27 +32,14 @@ export function Race() {
     tiefling: false,
   });
 
-  const [character_race, setCharater_race] = useState([])
-
-  useEffect(() => {
-    fetch("/character_sheet/").then((r) => {
-      if (r.ok) {
-        r.json().then((race) => {
-          setCharater_race(race)
-          console.log(race)
-
-        });
-      }
-    });
-  }, []);
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setCharacter_race({ ...race, [event.target.name]: event.target.checked });
   };
 
 
 
-  const { dragonborn, dwarf, elf, gnome, half_elf, half_orc, halfling, human, tiefling } = state;
+  const { dragonborn, dwarf, elf, gnome, half_elf, half_orc, halfling, human, tiefling } = race;
   const error = [dragonborn, dwarf, elf, gnome, half_elf, half_orc, halfling, human, tiefling].filter((v) => v).length !== 1;
 
   return (
