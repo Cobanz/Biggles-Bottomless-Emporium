@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -17,61 +17,91 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function Race() {
-    const classes = useStyles();
-    const [state, setState] = React.useState({
-      gilad: false,
-      jason: false,
-      antoine: false,
-    });
-  
-    const handleChange = (event) => {
-      setState({ ...state, [event.target.name]: event.target.checked });
-    };
-  
-    const { gilad, jason, antoine } = state;
-    const error = [gilad, jason, antoine].filter((v) => v).length !== 2;
-  
-    return (
-      <div className={classes.root}>
-        <FormControl component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Race</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-              label="Gilad Gray"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-              label="Jason Killian"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-              label="Antoine Llorca"
-            />
-          </FormGroup>
-          <FormHelperText>Be careful</FormHelperText>
-        </FormControl>
 
-        
-        <FormControl required error={error} component="fieldset" className={classes.formControl}>
-          <FormLabel component="legend">Pick two</FormLabel>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox checked={gilad} onChange={handleChange} name="gilad" />}
-              label="Gilad Gray"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={jason} onChange={handleChange} name="jason" />}
-              label="Jason Killian"
-            />
-            <FormControlLabel
-              control={<Checkbox checked={antoine} onChange={handleChange} name="antoine" />}
-              label="Antoine Llorca"
-            />
-          </FormGroup>
-          <FormHelperText>You can display an error</FormHelperText>
-        </FormControl>
-      </div>
-    );
-  }
+export function Race() {
+  // const classes = useStyles();
+  const [state, setState] = useState({
+    dragonborn: false,
+    dwarf: false,
+    elf: false,
+    gnome: false,
+    half_elf: false, 
+    half_orc: false, 
+    halfling: false,
+    human: false,
+    tiefling: false,
+  });
+
+  const [character_race, setCharater_race] = useState([])
+
+  useEffect(() => {
+    fetch("/character_sheet/").then((r) => {
+      if (r.ok) {
+        r.json().then((race) => {
+          setCharater_race(race)
+          console.log(race)
+
+        });
+      }
+    });
+  }, []);
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
+
+
+  const { dragonborn, dwarf, elf, gnome, half_elf, half_orc, halfling, human, tiefling } = state;
+  const error = [dragonborn, dwarf, elf, gnome, half_elf, half_orc, halfling, human, tiefling].filter((v) => v).length !== 1;
+
+  return (
+    <div className="race_checkbox_container">
+
+      <FormControl required error={error} component="fieldset" className="race_checkboxes">
+        <FormLabel component="legend">Race</FormLabel>
+        <FormGroup>
+          <FormControlLabel
+            control={<Checkbox checked={dragonborn} onChange={handleChange} name="dragonborn" />}
+            label="Dragonborn"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={dwarf} onChange={handleChange} name="dwarf" />}
+            label="Dwarf"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={elf} onChange={handleChange} name="elf" />}
+            label="Elf"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={gnome} onChange={handleChange} name="gnome" />}
+            label="Gnome"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={half_elf} onChange={handleChange} name="half_elf" />}
+            label="Half-Elf"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={half_orc} onChange={handleChange} name="half_orc" />}
+            label="Half-Orc"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={halfling} onChange={handleChange} name="halfling" />}
+            label="Halfling"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={human} onChange={handleChange} name="human" />}
+            label="Human"
+          />
+          <FormControlLabel
+            control={<Checkbox checked={tiefling} onChange={handleChange} name="tiefling" />}
+            label="Tiefling"
+          />
+
+
+        </FormGroup>
+        <FormHelperText>*Pick One</FormHelperText>
+      </FormControl>
+    </div>
+  );
+}
