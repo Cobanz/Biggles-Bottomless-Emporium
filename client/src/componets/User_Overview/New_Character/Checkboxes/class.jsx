@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+// const classes = useStyles();
 export function Class({character_class, handleChange}) {
-  // const classes = useStyles();
 
 
   const {barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard} = character_class;
