@@ -17,26 +17,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function Class(props) {
+export function Class({character_class, handleChange}) {
   // const classes = useStyles();
-  const [character_class, setCharacter_class] = useState({
-    barbarian: false,
-    bard: false,
-    cleric: false,
-    druid: false,
-    fighter: false,
-    monk: false,
-    paladin: false,
-    ranger: false,
-    rogue: false,
-    sorcerer: false,
-    warlock: false,
-    wizard: false,
-  });
 
-  const handleChange = (event) => {
-    setCharacter_class({ ...character_class, [event.target.name]: event.target.checked });
-  };
 
   const {barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard} = character_class;
   const error = [barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard].filter((v) => v).length !== 1;

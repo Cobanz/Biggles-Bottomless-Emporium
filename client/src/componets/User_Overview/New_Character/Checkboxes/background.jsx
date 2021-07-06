@@ -17,19 +17,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function Background(props) {
-  // const classes = useStyles();
-  const [character_background, setCharacter_Background] = useState({
-    acolyte: false,
-    criminal: false,
-    hermit: false,
-    knight: false,
-    outlander: false
-  });
+export function Background({character_background, handleChange}) {
 
-  const handleChange = (event) => {
-    setCharacter_Background({ ...character_background, [event.target.name]: event.target.checked });
-  };
 
   const { acolyte, criminal, hermit, knight, outlander } = character_background;
   const error = [acolyte, criminal, hermit, knight, outlander].filter((v) => v).length !== 1;

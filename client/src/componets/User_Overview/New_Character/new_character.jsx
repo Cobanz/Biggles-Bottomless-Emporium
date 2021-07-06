@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,6 +14,57 @@ import Name_field from './name_field';
 
 
 export const New_character = (props) => {
+
+    const [character_name, setCharacter_Name] = useState("")
+
+    const [character_race, setCharacter_Race] = useState({
+        dragonborn: false,
+        dwarf: false,
+        elf: false,
+        gnome: false,
+        half_elf: false, 
+        half_orc: false, 
+        halfling: false,
+        human: false,
+        tiefling: false,
+      });
+
+      const [character_class, setCharacter_Class] = useState({
+        barbarian: false,
+        bard: false,
+        cleric: false,
+        druid: false,
+        fighter: false,
+        monk: false,
+        paladin: false,
+        ranger: false,
+        rogue: false,
+        sorcerer: false,
+        warlock: false,
+        wizard: false,
+      });
+
+      const [character_background, setCharacter_Background] = useState({
+        acolyte: false,
+        criminal: false,
+        hermit: false,
+        knight: false,
+        outlander: false
+      });
+
+      const handleNameChange = (event) => {setCharacter_Name()}
+
+      const handleClassChange = (event) => {
+        setCharacter_Class({ ...character_class, [event.target.name]: event.target.checked });
+      };
+      const handleRaceChange = (event) => {
+        setCharacter_Race({ ...character_race, [event.target.name]: event.target.checked });
+      };
+      const handleBackgroundChange = (event) => {
+        setCharacter_Background({ ...character_background, [event.target.name]: event.target.checked });
+      };
+
+
     
     function onSubmit(e) {
         e.preventDefault();
@@ -42,19 +93,19 @@ return (
    <form className="new_character_form">
 <div className="big_three_container">
    <div>
-       <Name_field></Name_field>
+       <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>
    </div>
 
    <div> 
-       <Race></Race>
+       <Race character_race={character_race} handleChange={handleRaceChange}></Race>
    </div>
 
    <div> 
-        <Class></Class>
+        <Class character_class={character_class} handleChange={handleClassChange} ></Class>
    </div>
 
    <div>
-        <Background></Background>
+        <Background character_background={character_background} handleChange={handleBackgroundChange}></Background>
    </div>
 </div>
 
