@@ -15,7 +15,7 @@ export const User_Overview = (props) => {
         <>
             <header>This is where you will see the characters a user
          has already created and where you can make a new one!</header>
-         <image className="image-of-biggles-uo" src="" alt="image of biggles"></image>
+            <image className="image-of-biggles-uo" src="" alt="image of biggles"></image>
 
             <div className="character-card-container"> <OutlinedCard></OutlinedCard></div>
         </>

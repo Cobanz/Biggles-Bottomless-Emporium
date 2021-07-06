@@ -59,33 +59,35 @@ export const New_character = (props) => {
         });
     }, []);
 
+
+    //these handle the clicks and state changes for the checkboxes probably re factor if i have time
     const handleNameChange = (event) => { setCharacter_Name(event) };
 
-
-
-
     const handleClassChange = (event) => {
-       character_class.map(job => job.name === event.target.name ? handleClassToggle(event.target.name, job): null)};
+        character_class.map(job => job.name === event.target.name ? handleClassToggle(event.target.name, job) : null)
+    };
 
     const handleClassToggle = (name, checked_class) => {
-        checked_class.checked ? setCharacter_Class([...character_class.map(job => job.name === name ? {...job, checked: false}: job)]) : setCharacter_Class([...character_class.map(job => job.name === name ? {...job, checked: true} : job)])}
-
-
-
+        checked_class.checked ? setCharacter_Class([...character_class.map(job => job.name === name ? { ...job, checked: false } : job)]) : setCharacter_Class([...character_class.map(job => job.name === name ? { ...job, checked: true } : job)])
+    }
 
 
     const handleRaceChange = (event) => {
-        character_race.map(race => race.name === event.target.name ? handleRaceToggle(event.target.name, race) : null)}
+        character_race.map(race => race.name === event.target.name ? handleRaceToggle(event.target.name, race) : null)
+    }
 
     const handleRaceToggle = (name, checked_race) => {
-        checked_race.checked ? setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: false } : race)]) : setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: true } : race)])}
+        checked_race.checked ? setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: false } : race)]) : setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: true } : race)])
+    }
 
 
     const handleBackgroundChange = (event) => {
-        character_background.map(background => background.name === event.target.name ? handleBackgroundToggle(event.target.name, background) : null)};
+        character_background.map(background => background.name === event.target.name ? handleBackgroundToggle(event.target.name, background) : null)
+    };
 
     const handleBackgroundToggle = (name, checked_background) => {
-        checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name? {...background, checked: false}:background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? {...background, checked: true}:background)])}
+        checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: true } : background)])
+    }
 
 
 

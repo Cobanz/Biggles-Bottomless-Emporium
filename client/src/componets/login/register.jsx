@@ -1,4 +1,4 @@
-import React, { useState , useHistory} from "react";
+import React, { useState, useHistory } from "react";
 import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
 // import { useAlert } from 'react-alert'
 // import { render } from 'react-dom'
@@ -6,70 +6,70 @@ import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/sr
 // import AlertTemplate from 'react-alert-template-basic'
 
 export const Register = (props) => {
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setErrors] = useState("")
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setErrors] = useState("")
 
-    function onSubmit(e) {
-      e.preventDefault();
-      fetch('/signup', {
-        method: 'POST',
-        headers:{
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({name, password}),
-      })
+  function onSubmit(e) {
+    e.preventDefault();
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, password }),
+    })
 
-      // alert.show("Oh look, an alert!"); <------ cant get this to work
-      // .then((r) => {
-      //   if (r.ok) {
-      //     r.json().then((user)=> props.onCreate(user));
-      //   } else {
-      //     r.json().then((err) => setErrors(err.errors));
-      //   }
-      // })
-    }
-
-
-    const logName = e => {
-      setName(
-        e.target.value
-      )
-    }
-
-    const logPassword = e => {
-      setPassword(
-        e.target.value
-      )
-    }
+    // alert.show("Oh look, an alert!"); <------ cant get this to work
+    // .then((r) => {
+    //   if (r.ok) {
+    //     r.json().then((user)=> props.onCreate(user));
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // })
+  }
 
 
+  const logName = e => {
+    setName(
+      e.target.value
+    )
+  }
+
+  const logPassword = e => {
+    setPassword(
+      e.target.value
+    )
+  }
 
 
-    return (
-      <div className="base-container" ref={props.containerRef}>
-        <div className="header">Register</div>
-        <div className="content">
-          <div className="image">
-            <img src={registerImg} alt="Register" />
-          </div>
-          <div className="form">
-            <div className="form-group">
-              <label htmlFor="username">Pick A Name</label>
-              <input type="text" name="name" placeholder="Name" onChange={logName} value={name}/>
-            </div>
-         
-            <div className="form-group">
-              <label htmlFor="password">Pick A Password</label>
-              <input type="password" name="password" placeholder="password" onChange={logPassword} value={password}/>
-            </div>
-          </div>
+
+
+  return (
+    <div className="base-container" ref={props.containerRef}>
+      <div className="header">Register</div>
+      <div className="content">
+        <div className="image">
+          <img src={registerImg} alt="Register" />
         </div>
-        <div className="footer">
-          <button type="button" className="btn" onClick={onSubmit}>
-            Register
-          </button>
+        <div className="form">
+          <div className="form-group">
+            <label htmlFor="username">Pick A Name</label>
+            <input type="text" name="name" placeholder="Name" onChange={logName} value={name} />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Pick A Password</label>
+            <input type="password" name="password" placeholder="password" onChange={logPassword} value={password} />
+          </div>
         </div>
       </div>
-    );
-  };
+      <div className="footer">
+        <button type="button" className="btn" onClick={onSubmit}>
+          Register
+          </button>
+      </div>
+    </div>
+  );
+};

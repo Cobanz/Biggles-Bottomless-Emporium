@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export function Background({character_background, handleChange}) {
+export function Background({ character_background, handleChange }) {
 
 
   // const { acolyte, criminal, hermit, knight, outlander } = character_background;
@@ -25,20 +25,20 @@ export function Background({character_background, handleChange}) {
 
   return (
     <div className="background_checkbox_container">
-         
+
       <FormControl required error={null} component="fieldset" className="background_checkbox">
         <FormLabel component="legend">Background</FormLabel>
         <FormGroup>
 
 
-        {character_background.map((background) => {
+          {character_background.map((background) => {
 
-         return <FormControlLabel
-            control={<Checkbox checked={background.checked? true: null} onChange={handleChange} name={background.name} />}
-            label={background.name}
-          />
+            return <FormControlLabel
+              control={<Checkbox checked={background.checked ? true : null} onChange={handleChange} name={background.name} />}
+              label={background.name}
+            />
           })}
-     
+
 
 
         </FormGroup>

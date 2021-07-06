@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 //   },
 // }));
 
-export default function Name_field({character_name, handleChange}) {
+export default function Name_field({ character_name, handleChange }) {
   // const classes = useStyles();
 
   const logName = (e) => {
@@ -22,12 +22,12 @@ export default function Name_field({character_name, handleChange}) {
 
   return (
     <div className="name_field_container">
-    <form className="name_field" noValidate autoComplete="off">
-    
-    <TextField id="filled-basic" label="What is your Name?" variant="filled" onChange={logName} value={character_name}/>
-    
-  </form>
-  </div>
- 
+      <form className="name_field" noValidate autoComplete="off">
+
+        <TextField id="filled-basic" label="What is your Name?" variant="filled" onChange={logName} value={character_name} />
+
+      </form>
+    </div>
+
   );
 }

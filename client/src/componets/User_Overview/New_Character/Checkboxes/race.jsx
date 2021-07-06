@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export function Race({character_race, handleChange}) {
+export function Race({ character_race, handleChange }) {
   // const classes = useStyles();
 
 
@@ -34,14 +34,14 @@ export function Race({character_race, handleChange}) {
         <FormLabel component="legend">Race</FormLabel>
         <FormGroup>
 
-        {character_race.map((race) => {
+          {character_race.map((race) => {
 
-         return <FormControlLabel
-            control={<Checkbox checked={race.checked? true: null} onChange={handleChange} name={race.name} />}
-            label={race.name}
-          />
+            return <FormControlLabel
+              control={<Checkbox checked={race.checked ? true : null} onChange={handleChange} name={race.name} />}
+              label={race.name}
+            />
           })}
-          
+
 
 
         </FormGroup>

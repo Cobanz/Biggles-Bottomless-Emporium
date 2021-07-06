@@ -14,14 +14,15 @@ import { Exsisting } from './componets/User_Overview/Exsisting_Character/exsisti
 const App = () => {
 
   const [user, setUser] = useState("")
-  
+
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((name) => {setUser(user)
-          
+        r.json().then((name) => {
+          setUser(user)
+
         });
       }
     });
@@ -55,38 +56,38 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-      <div className="App">
-        <nav className="nav-bar">
-          <ul className="nav-bar-ul">
-            <li className="nav-bar-ul-li a">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="nav-bar-ul-li a">
-              <Link to="/user">User</Link>
-            </li>
-            <li className="nav-bar-ul-li a">
-              <Link to="/details">Character Details</Link>
-            </li>
-            <li className="nav-bar-ul-li a">
-              <Link to="/new">New Character</Link>
-            </li>
-            <li className="nav-bar-ul-li a">
-              <Link to="/about">About</Link>
-            </li>
-            <li className="nav-bar-ul-li a">
-              <Link to="/ask">Ask Me Anything</Link>
-            </li>
-          </ul>
+        <div className="App">
+          <nav className="nav-bar">
+            <ul className="nav-bar-ul">
+              <li className="nav-bar-ul-li a">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
+                <Link to="/user">User</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
+                <Link to="/details">Character Details</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
+                <Link to="/new">New Character</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
+                <Link to="/about">About</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
+                <Link to="/ask">Ask Me Anything</Link>
+              </li>
+            </ul>
           </nav>
 
           <Switch>
 
             <Route exact path="/new">
-              <New_character/>
+              <New_character />
             </Route>
 
             <Route exact path="/ask">
-              <Ask_me_anything/>
+              <Ask_me_anything />
             </Route>
 
             <Route exact path="/user">
@@ -94,15 +95,15 @@ const App = () => {
             </Route>
 
             <Route exact path="/details">
-              <Exsisting/>
+              <Exsisting />
             </Route>
 
             <Route exact path="/about">
-            <About/>
+              <About />
             </Route>
 
             <Route exact path="/">
-              {isLoginActive && <Login containerRef={(ref) => (current = ref)} onLogin={setUser}/>}
+              {isLoginActive && <Login containerRef={(ref) => (current = ref)} onLogin={setUser} />}
               {!isLoginActive && (<Register containerRef={(ref) => (current = ref)} />)}
               <RightSide current={current} currentActive={currentActive} containerRef={(ref) => (rightSide = ref)} onClick={handleActiveState.bind(this)}
               />
