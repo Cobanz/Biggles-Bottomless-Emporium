@@ -52,7 +52,7 @@ export const New_character = (props) => {
         outlander: false
       });
 
-      const handleNameChange = (event) => {setCharacter_Name()}
+      const handleNameChange = (event) => {setCharacter_Name(event)}
 
       const handleClassChange = (event) => {
         setCharacter_Class({ ...character_class, [event.target.name]: event.target.checked });
