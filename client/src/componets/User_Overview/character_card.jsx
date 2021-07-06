@@ -32,9 +32,10 @@ export default function OutlinedCard() {
   useEffect(() => {
     fetch("/character_sheet").then((r) => {
       if (r.ok) {
-        r.json().then((names) => {setCharater_list(names)
-            console.log(names)
-          
+        r.json().then((names) => {
+          setCharater_list(names)
+          console.log(names)
+
         });
       }
     });
@@ -43,42 +44,42 @@ export default function OutlinedCard() {
 
 
   return (
-      <div>
+    <div>
       {character_list.map((character) => {
-    return  <Card className="exsisting-charater-card" variant="outlined">
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          "Character Race" 
+        return <Card className="exsisting-charater-card" variant="outlined">
+          <CardContent>
+            <Typography className={classes.title} color="textSecondary" gutterBottom>
+              "Character Race"
         </Typography>
-        <Typography variant="h5" component="h2">
-        Name: {character.name}
+            <Typography variant="h5" component="h2">
+              Name: {character.name}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              "Character Class"
         </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          "Character Class"
-        </Typography>
-        <image className="charater-image" alt="or a random generic pic"></image>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Character Details</Button>
-      </CardActions>
+            <image className="charater-image" alt="or a random generic pic"></image>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Character Details</Button>
+          </CardActions>
 
-    </Card>
-    })}
+        </Card>
+      })}
 
       <Card className="new-charater-card" variant="outlined">
-      <CardContent>
-        
-        <Typography variant="h5" component="h2">
-          "Who are you?"
+        <CardContent>
+
+          <Typography variant="h5" component="h2">
+            "Who are you?"
         </Typography>
-       
-        <image className="generic-pic" alt="random generic pic"></image>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Create New</Button>
-      </CardActions>
-    </Card>
-</div>
-    
+
+          <image className="generic-pic" alt="random generic pic"></image>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Create New</Button>
+        </CardActions>
+      </Card>
+    </div>
+
   );
 }

@@ -7,17 +7,23 @@ Rails.application.routes.draw do
   get "/character_sheet/:id", to: "character_sheets#show"
   # destroy one character baised on user log in
   delete "/character_sheet/:id", to: "character_sheets#destroy"
-  
-  get '/character_sheet_races/', to: "character_sheets#index_races"
 
+  
+
+  # grab all the race info so i can map it
   get '/races', to: "races#index"
+  # grab all the race info so i can map it
+  get '/classes', to: "classes#index"
+  # grab all the race info so i can map it
+  get '/backgrounds', to: "backgrounds#index"
+  
+
 
 
   # create a new user
   post "/signup", to: "users#create"
   # see user
   get "/me", to: "users#show"
-
   # log in exsisting user - done
   post "/login", to: "sessions#create"
   # log out existing user - done

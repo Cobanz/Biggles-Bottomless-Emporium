@@ -17,55 +17,78 @@ export const New_character = (props) => {
 
     const [character_name, setCharacter_Name] = useState("")
 
-    const [character_race, setCharacter_Race] = useState({
-        dragonborn: false,
-        dwarf: false,
-        elf: false,
-        gnome: false,
-        half_elf: false, 
-        half_orc: false, 
-        halfling: false,
-        human: false,
-        tiefling: false,
-      });
+    const [character_race, setCharacter_Race] = useState([]);
 
-      const [character_class, setCharacter_Class] = useState({
-        barbarian: false,
-        bard: false,
-        cleric: false,
-        druid: false,
-        fighter: false,
-        monk: false,
-        paladin: false,
-        ranger: false,
-        rogue: false,
-        sorcerer: false,
-        warlock: false,
-        wizard: false,
-      });
+    useEffect(() => {
+        //get all races info into state
+        fetch("/races").then((r) => {
+            if (r.ok) {
+                r.json().then((character_race) => {
+                    setCharacter_Race(character_race)
 
-      const [character_background, setCharacter_Background] = useState({
-        acolyte: false,
-        criminal: false,
-        hermit: false,
-        knight: false,
-        outlander: false
-      });
+                });
+            }
+        });
+    }, []);
 
-      const handleNameChange = (event) => {setCharacter_Name(event)}
+    const [character_class, setCharacter_Class] = useState([]);
 
-      const handleClassChange = (event) => {
-        setCharacter_Class({ ...character_class, [event.target.name]: event.target.checked });
-      };
-      const handleRaceChange = (event) => {
-        setCharacter_Race({ ...character_race, [event.target.name]: event.target.checked });
-      };
-      const handleBackgroundChange = (event) => {
-        setCharacter_Background({ ...character_background, [event.target.name]: event.target.checked });
-      };
+    useEffect(() => {
+        //get all classes info into state
+        fetch("/classes").then((r) => {
+            if (r.ok) {
+                r.json().then((character_class) => {
+                    setCharacter_Class(character_class)
+
+                });
+            }
+        });
+    }, []);
+
+    const [character_background, setCharacter_Background] = useState([]);
+
+    useEffect(() => {
+        //get all backgrounds info into state
+        fetch("/backgrounds").then((r) => {
+            if (r.ok) {
+                r.json().then((character_background) => {
+                    setCharacter_Background(character_background)
+
+                });
+            }
+        });
+    }, []);
+
+    const handleNameChange = (event) => { setCharacter_Name(event) };
 
 
-    
+
+
+    const handleClassChange = (event) => {
+       character_class.map(job => job.name === event.target.name ? handleClassToggle(event.target.name, job): null)};
+
+    const handleClassToggle = (name, checked_class) => {
+        checked_class.checked ? setCharacter_Class([...character_class.map(job => job.name === name ? {...job, checked: false}: job)]) : setCharacter_Class([...character_class.map(job => job.name === name ? {...job, checked: true} : job)])}
+
+
+
+
+
+    const handleRaceChange = (event) => {
+        character_race.map(race => race.name === event.target.name ? handleRaceToggle(event.target.name, race) : null)}
+
+    const handleRaceToggle = (name, checked_race) => {
+        checked_race.checked ? setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: false } : race)]) : setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: true } : race)])}
+
+
+    const handleBackgroundChange = (event) => {
+        character_background.map(background => background.name === event.target.name ? handleBackgroundToggle(event.target.name, background) : null)};
+
+    const handleBackgroundToggle = (name, checked_background) => {
+        checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name? {...background, checked: false}:background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? {...background, checked: true}:background)])}
+
+
+
     function onSubmit(e) {
         e.preventDefault();
         // fetch("/character_sheet", {
@@ -82,65 +105,65 @@ export const New_character = (props) => {
         //   }
         // });
         // history.push('/user')
-        }
+    }
 
-// probably build filters at some point to filter options based on choice of race/class/background
-return (
+    // probably build filters at some point to filter options based on choice of race/class/background
+    return (
 
-    <div className="new_character_container">
-   <header>This is where we can build new characters</header>
+        <div className="new_character_container">
+            <header>This is where we can build new characters</header>
 
-   <form className="new_character_form">
-<div className="big_three_container">
-   <div>
-       <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>
-   </div>
+            <form className="new_character_form">
+                <div className="big_three_container">
+                    <div>
+                        <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>
+                    </div>
 
-   <div> 
-       <Race character_race={character_race} handleChange={handleRaceChange}></Race>
-   </div>
+                    <div>
+                        <Race character_race={character_race} handleChange={handleRaceChange}></Race>
+                    </div>
 
-   <div> 
-        <Class character_class={character_class} handleChange={handleClassChange} ></Class>
-   </div>
+                    <div>
+                        <Class character_class={character_class} handleChange={handleClassChange} ></Class>
+                    </div>
 
-   <div>
-        <Background character_background={character_background} handleChange={handleBackgroundChange}></Background>
-   </div>
-</div>
+                    <div>
+                        <Background character_background={character_background} handleChange={handleBackgroundChange}></Background>
+                    </div>
+                </div>
 
-   <div> Your Starting Equipment 
+                <div> Your Starting Equipment
         <option></option>
-   </div> 
+                </div>
 
-   <div> Pick Equipment Options *
+                <div> Pick Equipment Options *
         <option></option>
-   </div>
+                </div>
 
-   <div> Your Given Profencies
+                <div> Your Given Profencies
         <option></option>
-   </div>
+                </div>
 
-   <div> Pick Profencies Options *
+                <div> Pick Profencies Options *
         <option></option>
-   </div>
-   
-   <div> Your Known languages
+                </div>
+
+                <div> Your Known languages
         <option></option>
-   </div>
+                </div>
 
-   <div> Pick Extra Language Options *
+                <div> Pick Extra Language Options *
         <option></option>
-   </div>
+                </div>
 
-   <button onClick={onSubmit}>Submit?</button>
+                <button onClick={onSubmit}>Submit?</button>
 
-   </form>
+            </form>
 
 
-   <footer> *Some combinations may have different allowed picks for options be sure to check rules until i figure out the filtering</footer>
-    </div>
-)
+            <footer> *Some combinations may have different allowed picks for options be sure to check rules until i figure out the filtering</footer>
+        </div>
+    )
 
 }
 

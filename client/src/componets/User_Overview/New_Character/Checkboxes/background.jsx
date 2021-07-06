@@ -20,35 +20,25 @@ const useStyles = makeStyles((theme) => ({
 export function Background({character_background, handleChange}) {
 
 
-  const { acolyte, criminal, hermit, knight, outlander } = character_background;
-  const error = [acolyte, criminal, hermit, knight, outlander].filter((v) => v).length !== 1;
+  // const { acolyte, criminal, hermit, knight, outlander } = character_background;
+  // const error = [acolyte, criminal, hermit, knight, outlander].filter((v) => v).length !== 1;
 
   return (
     <div className="background_checkbox_container">
          
-      <FormControl required error={error} component="fieldset" className="background_checkbox">
+      <FormControl required error={null} component="fieldset" className="background_checkbox">
         <FormLabel component="legend">Background</FormLabel>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox checked={acolyte} onChange={handleChange} name="acolyte" />}
-            label="Acolyte"
+
+
+        {character_background.map((background) => {
+
+         return <FormControlLabel
+            control={<Checkbox checked={background.checked? true: null} onChange={handleChange} name={background.name} />}
+            label={background.name}
           />
-          <FormControlLabel
-            control={<Checkbox checked={criminal} onChange={handleChange} name="criminal" />}
-            label="Criminal"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={hermit} onChange={handleChange} name="hermit" />}
-            label="Hermit"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={knight} onChange={handleChange} name="knight" />}
-            label="Knight"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={outlander} onChange={handleChange} name="outlander" />}
-            label="Outlander"
-          />
+          })}
+     
 
 
         </FormGroup>

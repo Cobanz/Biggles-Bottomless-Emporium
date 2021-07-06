@@ -18,66 +18,27 @@ const useStyles = makeStyles((theme) => ({
 
 
 // const classes = useStyles();
-export function Class({character_class, handleChange}) {
+export function Class({ character_class, handleChange }) {
 
 
-  const {barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard} = character_class;
-  const error = [barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard].filter((v) => v).length !== 1;
+  // const {barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard} = character_class;
+  // const error = [barbarian, bard, cleric, druid, fighter, monk, paladin, ranger, rogue, sorcerer, warlock, wizard].filter((v) => v).length !== 1;
 
   return (
     <div className='class_checkbox_container'>
-         
-      <FormControl required error={error} component="fieldset" className="class_checkbox">
+
+      <FormControl required error={null} component="fieldset" className="class_checkbox">
         <FormLabel component="legend">Class</FormLabel>
         <FormGroup>
-          <FormControlLabel
-            control={<Checkbox checked={barbarian} onChange={handleChange} name="barbarian" />}
-            label="Barbarian"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={bard} onChange={handleChange} name="bard" />}
-            label="Bard"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={cleric} onChange={handleChange} name="cleric" />}
-            label="Cleric"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={druid} onChange={handleChange} name="druid" />}
-            label="Druid"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={fighter} onChange={handleChange} name="fighter" />}
-            label="Fighter"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={monk} onChange={handleChange} name="monk" />}
-            label="Monk"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={paladin} onChange={handleChange} name="paladin" />}
-            label="Paladin"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={ranger} onChange={handleChange} name="ranger" />}
-            label="Ranger"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={rogue} onChange={handleChange} name="rogue" />}
-            label="Rogue"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={sorcerer} onChange={handleChange} name="sorcerer" />}
-            label="Sorcerer"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={warlock} onChange={handleChange} name="warlock" />}
-            label="Warlock"
-          />
-          <FormControlLabel
-            control={<Checkbox checked={wizard} onChange={handleChange} name="wizard" />}
-            label="Wizard"
-          />
+
+          {character_class.map((job) => {
+
+            return <FormControlLabel
+              control={<Checkbox checked={job.checked ? true : null} onChange={handleChange} name={job.name} />}
+              label={job.name}
+            />
+          })}
+
 
 
         </FormGroup>
