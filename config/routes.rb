@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # new character baised on user logged in
-  post "/character_sheet/", to: "character_sheets#create"
+  post "/character_sheet/:id", to: "character_sheets#create"
   # all character baised on user logged in
   get "/character_sheet/", to: "character_sheets#index"
   # see one character baised on user log in

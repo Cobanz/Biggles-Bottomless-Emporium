@@ -15,6 +15,8 @@ import Name_field from './name_field';
 
 export const New_character = (props) => {
 
+
+    // const [new_character, setNew_Character] = useState([])
     const [character_name, setCharacter_Name] = useState("")
 
     const [character_race, setCharacter_Race] = useState([]);
@@ -25,7 +27,7 @@ export const New_character = (props) => {
             if (r.ok) {
                 r.json().then((character_race) => {
                     setCharacter_Race(character_race)
-
+                    // console.log(character_race)
                 });
             }
         });
@@ -53,7 +55,6 @@ export const New_character = (props) => {
             if (r.ok) {
                 r.json().then((character_background) => {
                     setCharacter_Background(character_background)
-
                 });
             }
         });
@@ -89,25 +90,51 @@ export const New_character = (props) => {
         checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: true } : background)])
     }
 
+    // console.log(handleBackgroundToggle)
 
+    
 
-    function onSubmit(e) {
-        e.preventDefault();
-        // fetch("/character_sheet", {
-        //   method: "POST",
-        //   headers: {
-        //   "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify({  }),
-        // }).then((r) => {
-        //   if (r.ok) {
-        //   r.json().then((new_character) => props.something?(new_character));
-        //   } else {
-        //   r.json().then((err) => setErrors(err.errors));
-        //   }
-        // });
-        // history.push('/user')
+    //want to add each of the set elments in the states to this master state and then send it json ofyied
+    const combine_Character_object = () => {
+        let race = character_race.filter((character) => character.checked)
+        let job = character_class.filter((character) => character.checked)
+        let background = character_background.filter((character) => character.checked)
+      
+       
+       
+        let new_char_object = {race: race[0].id, class:job[0].id, background:background[0].id, name:character_name , user_id:props.user.id}
+        console.log(new_char_object) 
+        // fetch here
     }
+
+
+    const  onSubmit = e  => {
+        e.preventDefault();
+        // console.log(new_character)
+        combine_Character_object()
+        
+    }
+
+    // console.log(combine_Character())
+
+
+
+
+    // fetch("/character_sheet/:id", {
+    //   method: "POST",
+    //   headers: {
+    //   "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify( props.user.id, character_class.id , character_race.id, character_background.id, character_name ),
+    // }).then((r) => {
+    //   if (r.ok) {
+    //   r.json().then(new_character => setNew_Character(new_character));
+    //   } else {
+    // //   r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
+    // history.push('/user')
+
 
     // probably build filters at some point to filter options based on choice of race/class/background
     return (

@@ -14,13 +14,14 @@ import { Exsisting } from './componets/User_Overview/Exsisting_Character/exsisti
 const App = () => {
 
   const [user, setUser] = useState("")
+  const [logout, setLogout] = useState('')
 
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((name) => {
+        r.json().then((user) => {
           setUser(user)
 
         });
@@ -28,7 +29,16 @@ const App = () => {
     });
   }, []);
 
-
+// useEffect(() => {
+//   fetch('/logout').then((r) => {
+//     if (r.ok) {
+//       r.json().then ((logout) => {
+//         setLogout(logout)
+//       })
+//     }
+//   })
+// }, []);
+ 
 
   const [isLoginActive, setisLoginActive] = useState(1);
   let current = isLoginActive ? "Register" : "Login";
@@ -77,13 +87,16 @@ const App = () => {
               <li className="nav-bar-ul-li a">
                 <Link to="/ask">Ask Me Anything</Link>
               </li>
+              <li>
+                <button>log out</button>
+              </li>
             </ul>
           </nav>
 
           <Switch>
 
             <Route exact path="/new">
-              <New_character />
+              <New_character user={user}/>
             </Route>
 
             <Route exact path="/ask">

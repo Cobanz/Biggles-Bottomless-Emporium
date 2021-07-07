@@ -1,8 +1,10 @@
 class CharacterSheetsController < ApplicationController
 
-    # skip_before_action :authorize, only: :create maybe may not need should authroize at all times
+    # skip_before_action :authorize, only: :create 
+    # maybe may not need should authroize at all times
 
     def create
+        # byebug
         new_character = CharacterSheet.create!(character_params)
         render json: new_character, status: :created 
     end
