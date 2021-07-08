@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_06_30_165320) do
   create_table "character_sheets", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
-    t.integer "character_class_id"
     t.integer "race_id"
     t.integer "background_id"
     t.string "personal_bio"

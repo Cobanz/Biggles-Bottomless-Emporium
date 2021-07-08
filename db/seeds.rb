@@ -2,6 +2,9 @@
 Race.destroy_all
 Job.destroy_all
 Background.destroy_all
+User.destroy_all
+CharacterSheet.destroy_all
+CharacterClass.destroy_all
 
 races = [
     
@@ -4446,10 +4449,6 @@ puts "backgrounds done"
 admin = User.create!(name: 'admin', password: 'admin', password_confirmation: 'admin') 
 
 
-
 character1 = CharacterSheet.create!( user_id: admin.id ,race_id: Race.first.id, background_id: Background.first.id,  name: "Coban", image: nil , personal_bio: "stronges man in the world")
 
 class1 = CharacterClass.create!(job_id:Job.all.first.id, character_sheet_id:character1.id)
-
-character1.update(character_class_id: class1.id)
-character1.save
