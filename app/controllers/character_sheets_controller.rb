@@ -11,12 +11,15 @@ class CharacterSheetsController < ApplicationController
 
     def show
         character = CharacterSheet.find(params[:id])
+        # session[:user_id] = user.id
         render json: character 
     
     end
 
 
     def index
+        character_sheet = CharacterSheet.where()
+        # session[:user_id] = user.id
         render json: CharacterSheet.all
     end
 
@@ -26,10 +29,15 @@ class CharacterSheetsController < ApplicationController
         head :no_content
     end
 
+    # def create
+	# 	note = @current_user.notes.create!(note_params)
+	# 	render json: note, status: :created
+	# end
+
     private
 
     def character_params
-        params.permit(:name, :user_id, :character_class_id, :character_background_id, :character_race_id)
+        params.permit(:name, :user_id, :character_class_id, :character_background_id, :character_race_id, :id , :character_sheet)
     end
 
 

@@ -30,7 +30,7 @@ export default function OutlinedCard() {
   const [character_list, setCharater_list] = useState([])
 
   useEffect(() => {
-    fetch("/character_sheet").then((r) => {
+    fetch("/character_sheet/").then((r) => {
       if (r.ok) {
         r.json().then((names) => {
           setCharater_list(names)
@@ -48,19 +48,20 @@ export default function OutlinedCard() {
       {character_list.map((character) => {
         return <Card className="exsisting-charater-card" variant="outlined">
           <CardContent>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              "Character Race"
+            <Typography className="character-race" color="textSecondary" gutterBottom>
+              "Character Race" {character.races.name}
         </Typography>
             <Typography variant="h5" component="h2">
               Name: {character.name}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
+            <Typography className="character-class" color="textSecondary">
               "Character Class"
         </Typography>
             <image className="charater-image" alt="or a random generic pic"></image>
           </CardContent>
           <CardActions>
             <Button size="small">Character Details</Button>
+            <Button size="small">Delete</Button>
           </CardActions>
 
         </Card>

@@ -88,7 +88,9 @@ const App = () => {
                 <Link to="/ask">Ask Me Anything</Link>
               </li>
               <li>
-                <button>log out</button>
+                <button 
+                // onClick={logout}
+                >log out</button>
               </li>
             </ul>
           </nav>

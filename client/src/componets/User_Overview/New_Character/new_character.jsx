@@ -16,7 +16,7 @@ import Name_field from './name_field';
 export const New_character = (props) => {
 
 
-    // const [new_character, setNew_Character] = useState([])
+    
     const [character_name, setCharacter_Name] = useState("")
 
     const [character_race, setCharacter_Race] = useState([]);
@@ -27,7 +27,7 @@ export const New_character = (props) => {
             if (r.ok) {
                 r.json().then((character_race) => {
                     setCharacter_Race(character_race)
-                    // console.log(character_race)
+                    
                 });
             }
         });
@@ -90,7 +90,7 @@ export const New_character = (props) => {
         checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: true } : background)])
     }
 
-    // console.log(handleBackgroundToggle)
+ 
 
     
 
@@ -99,23 +99,26 @@ export const New_character = (props) => {
         let race = character_race.filter((character) => character.checked)
         let job = character_class.filter((character) => character.checked)
         let background = character_background.filter((character) => character.checked)
-      
-       
-       
-        let new_char_object = {race: race[0].id, class:job[0].id, background:background[0].id, name:character_name , user_id:props.user.id}
+         
+        let new_char_object = {character_race_id: race[0].id, character_class_id:job[0].id, character_background_id:background[0].id, name:character_name , user_id:props.user.id}
         console.log(new_char_object) 
         // fetch here
+
+        fetch('/character_sheet/:id', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(new_char_object),
+        })
     }
 
 
     const  onSubmit = e  => {
         e.preventDefault();
-        // console.log(new_character)
         combine_Character_object()
         
     }
-
-    // console.log(combine_Character())
 
 
 
