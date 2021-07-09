@@ -10,6 +10,7 @@ import { Race } from './Checkboxes/race';
 import { Class } from './Checkboxes/class';
 import { Background } from './Checkboxes/background'
 import Name_field from './name_field';
+import { useHistory } from 'react-router';
 
 
 
@@ -19,14 +20,14 @@ export const New_character = (props) => {
     
     const [character_name, setCharacter_Name] = useState("")
 
-    const [character_race, setCharacter_Race] = useState([]);
+    const [race, setCharacter_Race] = useState([]);
 
     useEffect(() => {
         //get all races info into state
         fetch("/races").then((r) => {
             if (r.ok) {
-                r.json().then((character_race) => {
-                    setCharacter_Race(character_race)
+                r.json().then((race) => {
+                    setCharacter_Race(race)
                     
                 });
             }
@@ -47,14 +48,14 @@ export const New_character = (props) => {
         });
     }, []);
 
-    const [character_background, setCharacter_Background] = useState([]);
+    const [background, setCharacter_Background] = useState([]);
 
     useEffect(() => {
         //get all backgrounds info into state
         fetch("/backgrounds").then((r) => {
             if (r.ok) {
-                r.json().then((character_background) => {
-                    setCharacter_Background(character_background)
+                r.json().then((background) => {
+                    setCharacter_Background(background)
                 });
             }
         });
@@ -74,20 +75,20 @@ export const New_character = (props) => {
 
 
     const handleRaceChange = (event) => {
-        character_race.map(race => race.name === event.target.name ? handleRaceToggle(event.target.name, race) : null)
+        race.map(race => race.name === event.target.name ? handleRaceToggle(event.target.name, race) : null)
     }
 
     const handleRaceToggle = (name, checked_race) => {
-        checked_race.checked ? setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: false } : race)]) : setCharacter_Race([...character_race.map(race => race.name === name ? { ...race, checked: true } : race)])
+        checked_race.checked ? setCharacter_Race([...race.map(race => race.name === name ? { ...race, checked: false } : race)]) : setCharacter_Race([...race.map(race => race.name === name ? { ...race, checked: true } : race)])
     }
 
 
     const handleBackgroundChange = (event) => {
-        character_background.map(background => background.name === event.target.name ? handleBackgroundToggle(event.target.name, background) : null)
+        background.map(background => background.name === event.target.name ? handleBackgroundToggle(event.target.name, background) : null)
     };
 
     const handleBackgroundToggle = (name, checked_background) => {
-        checked_background.checked ? setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...character_background.map(background => background.name === name ? { ...background, checked: true } : background)])
+        checked_background.checked ? setCharacter_Background([...background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...background.map(background => background.name === name ? { ...background, checked: true } : background)])
     }
 
  
@@ -96,11 +97,11 @@ export const New_character = (props) => {
 
     //want to add each of the set elments in the states to this master state and then send it json ofyied
     const combine_Character_object = () => {
-        let race = character_race.filter((character) => character.checked)
-        let job = character_class.filter((character) => character.checked)
-        let background = character_background.filter((character) => character.checked)
+        let race_selection = race.find((character) => character.checked)
+       
+        let background_selection = background.find((character) => character.checked)
          
-        let new_char_object = {character_race_id: race[0].id, character_class_id:job[0].id, character_background_id:background[0].id, name:character_name , user_id:props.user.id}
+        let new_char_object = {race_id: race_selection.id, background_id:background_selection.id ,  name:character_name , user_id:props.user.id}
         console.log(new_char_object) 
         // fetch here
 
@@ -111,35 +112,44 @@ export const New_character = (props) => {
             },
             body: JSON.stringify(new_char_object),
         })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res, "res")
+           
+            add_job_to_character(res)
+        })
     }
 
+
+
+    const add_job_to_character = (new_character_sheet) => {
+        let jobs = character_class.filter((character) => character.checked)
+        let new_combined_object = { character_sheet_id: new_character_sheet.id, job_id: jobs[0].id }
+
+            console.log(new_combined_object)
+
+
+        fetch('/character_classes', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(new_combined_object),
+        })
+     
+            history.push('/user')
+    }
+const history = useHistory()
 
     const  onSubmit = e  => {
         e.preventDefault();
         combine_Character_object()
+       
         
     }
 
-
-
-
-    // fetch("/character_sheet/:id", {
-    //   method: "POST",
-    //   headers: {
-    //   "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify( props.user.id, character_class.id , character_race.id, character_background.id, character_name ),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //   r.json().then(new_character => setNew_Character(new_character));
-    //   } else {
-    // //   r.json().then((err) => setErrors(err.errors));
-    //   }
-    // });
-    // history.push('/user')
-
-
-    // probably build filters at some point to filter options based on choice of race/class/background
+   
+   
     return (
 
         <div className="new_character_container">
@@ -152,7 +162,7 @@ export const New_character = (props) => {
                     </div>
 
                     <div>
-                        <Race character_race={character_race} handleChange={handleRaceChange}></Race>
+                        <Race character_race={race} handleChange={handleRaceChange}></Race>
                     </div>
 
                     <div>
@@ -160,7 +170,7 @@ export const New_character = (props) => {
                     </div>
 
                     <div>
-                        <Background character_background={character_background} handleChange={handleBackgroundChange}></Background>
+                        <Background character_background={background} handleChange={handleBackgroundChange}></Background>
                     </div>
                 </div>
 

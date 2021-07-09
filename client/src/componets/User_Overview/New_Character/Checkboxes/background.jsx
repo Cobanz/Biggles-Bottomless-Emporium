@@ -35,7 +35,7 @@ export function Background({ character_background, handleChange }) {
 
             return <FormControlLabel
               control={<Checkbox checked={background.checked ? true : null} onChange={handleChange} name={background.name} />}
-              label={background.name}
+              label={background.name} key={background.id}
             />
           })}
 

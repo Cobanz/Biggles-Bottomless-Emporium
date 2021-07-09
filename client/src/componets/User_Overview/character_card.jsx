@@ -1,5 +1,6 @@
 import React, { useState, useHistory, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -46,21 +47,24 @@ export default function OutlinedCard() {
   return (
     <div>
       {character_list.map((character) => {
-        return <Card className="exsisting-charater-card" variant="outlined">
+        return <Card className="exsisting-charater-card" variant="outlined" key={character.id}>
           <CardContent>
             <Typography className="character-race" color="textSecondary" gutterBottom>
-              "Character Race" {character.races.name}
+              "Character Race" {character.race.name}
         </Typography>
             <Typography variant="h5" component="h2">
               Name: {character.name}
             </Typography>
             <Typography className="character-class" color="textSecondary">
-              "Character Class"
+              "Character Class" {character.jobs[0].name}
         </Typography>
             <image className="charater-image" alt="or a random generic pic"></image>
           </CardContent>
+
           <CardActions>
+            <Link to="/details">
             <Button size="small">Character Details</Button>
+            </Link>
             <Button size="small">Delete</Button>
           </CardActions>
 
@@ -77,7 +81,9 @@ export default function OutlinedCard() {
           <image className="generic-pic" alt="random generic pic"></image>
         </CardContent>
         <CardActions>
+          <Link to="/new">
           <Button size="small">Create New</Button>
+          </Link>
         </CardActions>
       </Card>
     </div>

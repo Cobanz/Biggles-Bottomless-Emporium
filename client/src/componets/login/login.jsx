@@ -1,6 +1,7 @@
-import React, { useState, useHistory, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import loginImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/red_dragon.png";
 import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router';
 
 
 export const Login = (props) => {
@@ -9,7 +10,9 @@ export const Login = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("")
-  // const history = useHistory();
+  const history = useHistory();
+ 
+   
 
   //   const  onSubmit = e => {
   //       e.preventDefault();
@@ -40,7 +43,7 @@ export const Login = (props) => {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    // history.push('/user')
+    history.push('/user')
   }
 
 

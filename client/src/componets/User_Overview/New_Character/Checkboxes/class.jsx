@@ -35,7 +35,7 @@ export function Class({ character_class, handleChange }) {
 
             return <FormControlLabel
               control={<Checkbox checked={job.checked ? true : null} onChange={handleChange} name={job.name} />}
-              label={job.name}
+              label={job.name} key={job.id}
             />
           })}
 

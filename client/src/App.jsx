@@ -1,6 +1,6 @@
 
 import './App.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useHistory } from 'react';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Register } from "./componets/login/index"
@@ -9,12 +9,13 @@ import { About } from './componets/About/about';
 import { User_Overview } from './componets/User_Overview/user_overview';
 import { Ask_me_anything } from './componets/AMA/ask_me_anything';
 import { New_character } from './componets/User_Overview/New_Character/new_character';
-import { Exsisting } from './componets/User_Overview/Exsisting_Character/exsisting';
+import { Existing } from './componets/User_Overview/Existing_Character/existing';
 
 const App = () => {
 
   const [user, setUser] = useState("")
   const [logout, setLogout] = useState('')
+ 
 
 
   useEffect(() => {
@@ -23,11 +24,12 @@ const App = () => {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-
+          
         });
       }
     });
   }, []);
+ 
 
 // useEffect(() => {
 //   fetch('/logout').then((r) => {
@@ -97,23 +99,23 @@ const App = () => {
 
           <Switch>
 
-            <Route exact path="/new">
+            <Route path="/new">
               <New_character user={user}/>
             </Route>
 
-            <Route exact path="/ask">
+            <Route path="/ask">
               <Ask_me_anything />
             </Route>
 
-            <Route exact path="/user">
+            <Route path="/user">
               <User_Overview />
             </Route>
 
-            <Route exact path="/details">
-              <Exsisting />
+            <Route path="/details">
+              <Existing />
             </Route>
 
-            <Route exact path="/about">
+            <Route path="/about">
               <About />
             </Route>
 

@@ -38,7 +38,7 @@ export function Race({ character_race, handleChange }) {
 
             return <FormControlLabel
               control={<Checkbox checked={race.checked ? true : null} onChange={handleChange} name={race.name} />}
-              label={race.name}
+              label={race.name} key={race.id}
             />
           })}
 
