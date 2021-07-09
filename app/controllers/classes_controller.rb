@@ -4,4 +4,5 @@ class ClassesController < ApplicationController
         job = Job.all
         render json: job
     end
+
 end

@@ -4,6 +4,7 @@ import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/sr
 // import { render } from 'react-dom'
 // import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 // import AlertTemplate from 'react-alert-template-basic'
+import { Link } from 'react-router-dom'
 
 export const Register = (props) => {
   const [name, setName] = useState("");
@@ -66,9 +67,11 @@ export const Register = (props) => {
         </div>
       </div>
       <div className="footer">
+        <Link to="/">
         <button type="button" className="btn" onClick={onSubmit}>
           Register
           </button>
+          </Link>
       </div>
     </div>
   );

@@ -29,15 +29,11 @@ class CharacterSheetsController < ApplicationController
         head :no_content
     end
 
-    # def create
-	# 	note = @current_user.notes.create!(note_params)
-	# 	render json: note, status: :created
-	# end
 
     private
 
     def character_params
-        params.permit(:name, :user_id, :character_class_id, :character_background_id, :character_race_id, :id , :character_sheet)
+        params.permit(:name, :user_id, :character_class_id, :background_id, :race_id)
     end
 
 

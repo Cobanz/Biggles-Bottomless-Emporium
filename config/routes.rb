@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # grab all the race info so i can map it
   get '/backgrounds', to: "backgrounds#index"
   
-
+  post "/character_classes", to: "character_classes#create"
 
 
   # create a new user

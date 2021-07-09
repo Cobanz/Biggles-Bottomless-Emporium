@@ -17,7 +17,7 @@ import { useHistory } from 'react-router';
 export const New_character = (props) => {
 
 
-    
+
     const [character_name, setCharacter_Name] = useState("")
 
     const [race, setCharacter_Race] = useState([]);
@@ -28,7 +28,7 @@ export const New_character = (props) => {
             if (r.ok) {
                 r.json().then((race) => {
                     setCharacter_Race(race)
-                    
+
                 });
             }
         });
@@ -91,18 +91,18 @@ export const New_character = (props) => {
         checked_background.checked ? setCharacter_Background([...background.map(background => background.name === name ? { ...background, checked: false } : background)]) : setCharacter_Background([...background.map(background => background.name === name ? { ...background, checked: true } : background)])
     }
 
- 
 
-    
+
+
 
     //want to add each of the set elments in the states to this master state and then send it json ofyied
     const combine_Character_object = () => {
         let race_selection = race.find((character) => character.checked)
-       
+
         let background_selection = background.find((character) => character.checked)
-         
-        let new_char_object = {race_id: race_selection.id, background_id:background_selection.id ,  name:character_name , user_id:props.user.id}
-        console.log(new_char_object) 
+
+        let new_char_object = { race_id: race_selection.id, background_id: background_selection.id, name: character_name, user_id: props.user.id }
+        console.log(new_char_object)
         // fetch here
 
         fetch('/character_sheet/:id', {
@@ -112,12 +112,12 @@ export const New_character = (props) => {
             },
             body: JSON.stringify(new_char_object),
         })
-        .then(res => res.json())
-        .then(res => {
-            console.log(res, "res")
-           
-            add_job_to_character(res)
-        })
+            .then(res => res.json())
+            .then(res => {
+                console.log(res, "res")
+
+                add_job_to_character(res)
+            })
     }
 
 
@@ -126,7 +126,7 @@ export const New_character = (props) => {
         let jobs = character_class.filter((character) => character.checked)
         let new_combined_object = { character_sheet_id: new_character_sheet.id, job_id: jobs[0].id }
 
-            console.log(new_combined_object)
+        console.log(new_combined_object)
 
 
         fetch('/character_classes', {
@@ -136,44 +136,48 @@ export const New_character = (props) => {
             },
             body: JSON.stringify(new_combined_object),
         })
-     
-            history.push('/user')
-    }
-const history = useHistory()
 
-    const  onSubmit = e  => {
+        history.push('/user')
+    }
+    const history = useHistory()
+
+    const onSubmit = e => {
         e.preventDefault();
         combine_Character_object()
-       
-        
+
+
     }
 
-   
-   
+
+
     return (
 
         <div className="new_character_container">
             <header>This is where we can build new characters</header>
 
-            <form className="new_character_form">
-                <div className="big_three_container">
-                    <div>
-                        <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>
-                    </div>
-
-                    <div>
-                        <Race character_race={race} handleChange={handleRaceChange}></Race>
-                    </div>
-
-                    <div>
-                        <Class character_class={character_class} handleChange={handleClassChange} ></Class>
-                    </div>
-
-                    <div>
-                        <Background character_background={background} handleChange={handleBackgroundChange}></Background>
-                    </div>
+                <div>
+                    <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>
                 </div>
 
+            <div className="big_three_container">
+
+                <div>
+                    <Race character_race={race} handleChange={handleRaceChange}></Race>
+                </div>
+
+                <div>
+                    <Class character_class={character_class} handleChange={handleClassChange} ></Class>
+                </div>
+
+                <div>
+                    <Background character_background={background} handleChange={handleBackgroundChange}></Background>
+                </div>
+
+            </div>
+
+            <br/>
+
+            <div className="other-character-stuff">
                 <div> Your Starting Equipment
         <option></option>
                 </div>
@@ -197,10 +201,11 @@ const history = useHistory()
                 <div> Pick Extra Language Options *
         <option></option>
                 </div>
+            </div>
 
-                <button onClick={onSubmit}>Submit?</button>
+            <button onClick={onSubmit}>Submit?</button>
 
-            </form>
+
 
 
             <footer> *Some combinations may have different allowed picks for options be sure to check rules until i figure out the filtering</footer>
