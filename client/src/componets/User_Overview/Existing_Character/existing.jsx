@@ -1,150 +1,111 @@
 import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Button from '@material-ui/core/Button';
-import CardActions from '@material-ui/core/CardActions';
-import { Link } from 'react-router-dom'
+import Box from '@material-ui/core/Box';
+import General from './links/General.jsx'
+import Job from "./links/Job.jsx";
+import Proficencies from "./links/Proficencies.jsx";
+import Race from "./links/Race.jsx";
+import Equipment from "./links/Equipment.jsx";
+import Background from "./links/Background.jsx";
+import Feats from './links/Feats.jsx';
 
-const drawerWidth = 240;
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+  };
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
 export function Existing() {
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState(0);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={clsx(classes.appBar, {[classes.appBarShift]: open})}>
-        <Toolbar>
-          <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start" className={clsx(classes.menuButton, open && classes.hide)}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Existing Character Name Goes Here!!!
-            <CardActions>
-            <Link to="/user">
-            <Button size="small"> Back To Details </Button>
-            </Link>
-          </CardActions>
-          </Typography>
-        </Toolbar>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          <Tab label="General" {...a11yProps(0)} />
+          <Tab label="Race" {...a11yProps(1)} />
+          <Tab label="Class" {...a11yProps(2)} />
+          <Tab label="Background" {...a11yProps(3)} />
+          <Tab label="Proficencies" {...a11yProps(4)} />
+          <Tab label="Equipment" {...a11yProps(5)} />
+          <Tab label="Feats" {...a11yProps(6)} />
+        </Tabs>
       </AppBar>
-      <Drawer className={classes.drawer} variant="persistent" anchor="left" open={open} classes={{paper: classes.drawerPaper}}>
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          {['General', 'Class', 'Race', 'Background'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['Proficencies', 'Equipment'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main className={clsx(classes.content, {[classes.contentShift]: open})}>
-        <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          Click one of the side menues to get more info on your character!
-        </Typography>
-        <Typography paragraph>
-          Did I miss anything? Check your PHB!
-        </Typography>
-      </main>
+      <TabPanel value={value} index={0}>
+        <General/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <Race/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <Job/>
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <Background/>
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        <Proficencies/>
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <Equipment/>
+      </TabPanel>
+      <TabPanel value={value} index={6}>
+        <Feats/>
+      </TabPanel>
     </div>
   );
 }

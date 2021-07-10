@@ -80,13 +80,13 @@ export default function OutlinedCard() {
         return <Card className="exsisting-character-card" variant="outlined" key={character.id}>
           <CardContent>
             <Typography className="character-race" color="textSecondary" gutterBottom>
-              "Character Race" {character.race.name}
+              {character.race.name}
         </Typography>
             <Typography variant="h5" component="h2">
-              Name: {character.name}
+              {character.name}
             </Typography>
             <Typography className="character-class" color="textSecondary">
-              "Character Class" {character.jobs[0].name}
+               {character.jobs[0].name}
         </Typography>
             <img src={icons[character.jobs[0].name]} className="character-image" alt="generic class pic"/>
           </CardContent>
