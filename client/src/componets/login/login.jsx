@@ -6,11 +6,10 @@ import { useHistory } from 'react-router';
 
 export const Login = (props) => {
 
-
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("")
-  const history = useHistory();
+  
  
    
 
@@ -43,7 +42,7 @@ export const Login = (props) => {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    history.push('/user')
+    // history.push('/user')
   }
 
 
@@ -65,9 +64,9 @@ export const Login = (props) => {
     <div className="base-container" ref={props.containerRef}>
       <div className="header">Login</div>
       <div className="content">
-        <div className="image">
+      <div className="image">
           <img src={loginImg} alt="Login" />
-        </div>
+       </div>
         <div className="form">
           <div className="form-group">
             <label htmlFor="username">Name</label>
@@ -86,5 +85,4 @@ export const Login = (props) => {
       </div>
     </div>
   );
-};
-
+}

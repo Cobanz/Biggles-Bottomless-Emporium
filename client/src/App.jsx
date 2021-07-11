@@ -63,6 +63,15 @@ const App = () => {
     setisLoginActive(!isLoginActive);
   };
 
+  const RightSide = (props) => {
+    return (
+      <div className="right-side" ref={props.containerRef} onClick={props.onClick}>
+        <div className="inner-container">
+          <div className="text">{props.current}</div>
+        </div>
+      </div>
+    );
+  };
 
 
   return (
@@ -134,15 +143,6 @@ const App = () => {
   );
 };
 
-const RightSide = (props) => {
-  return (
-    <div className="right-side" ref={props.containerRef} onClick={props.onClick}>
-      <div className="inner-container">
-        <div className="text">{props.current}</div>
-      </div>
-    </div>
-  );
-};
 
 
 export default App;

@@ -1,10 +1,6 @@
 import React, { useState, useHistory } from "react";
 import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
-// import { useAlert } from 'react-alert'
-// import { render } from 'react-dom'
-// import { transitions, positions, Provider as AlertProvider } from 'react-alert'
-// import AlertTemplate from 'react-alert-template-basic'
-import { Link } from 'react-router-dom'
+
 
 export const Register = (props) => {
   const [name, setName] = useState("");
@@ -21,14 +17,7 @@ export const Register = (props) => {
       body: JSON.stringify({ name, password }),
     })
 
-    // alert.show("Oh look, an alert!"); <------ cant get this to work
-    // .then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((user)=> props.onCreate(user));
-    //   } else {
-    //     r.json().then((err) => setErrors(err.errors));
-    //   }
-    // })
+
   }
 
 
@@ -67,11 +56,9 @@ export const Register = (props) => {
         </div>
       </div>
       <div className="footer">
-        <Link to="/">
         <button type="button" className="btn" onClick={onSubmit}>
           Register
-          </button>
-          </Link>
+          </button>          
       </div>
     </div>
   );

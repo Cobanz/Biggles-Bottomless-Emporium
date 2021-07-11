@@ -8,11 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import General from './links/General.jsx'
 import Job from "./links/Job.jsx";
-import Proficencies from "./links/Proficencies.jsx";
 import Race from "./links/Race.jsx";
-import Equipment from "./links/Equipment.jsx";
 import Background from "./links/Background.jsx";
-import Feats from './links/Feats.jsx';
+// import Proficencies from "./links/Proficencies.jsx";
+// import Equipment from "./links/Equipment.jsx";
+// import Feats from './links/Feats.jsx';
 
 
 function TabPanel(props) {
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 export function Existing() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  // const [clicked_Character, setClicked_Character] = useState([])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -80,24 +81,24 @@ export function Existing() {
           <Tab label="Race" {...a11yProps(1)} />
           <Tab label="Class" {...a11yProps(2)} />
           <Tab label="Background" {...a11yProps(3)} />
-          <Tab label="Proficencies" {...a11yProps(4)} />
+          {/* <Tab label="Proficencies" {...a11yProps(4)} />
           <Tab label="Equipment" {...a11yProps(5)} />
-          <Tab label="Feats" {...a11yProps(6)} />
+          <Tab label="Feats" {...a11yProps(6)} /> */}
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <General/>
+        <General />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Race/>
+        <Race />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Job/>
+        <Job />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Background/>
+        <Background />
       </TabPanel>
-      <TabPanel value={value} index={4}>
+      {/* <TabPanel value={value} index={4}>
         <Proficencies/>
       </TabPanel>
       <TabPanel value={value} index={5}>
@@ -105,7 +106,7 @@ export function Existing() {
       </TabPanel>
       <TabPanel value={value} index={6}>
         <Feats/>
-      </TabPanel>
+      </TabPanel> */}
     </div>
   );
 }

@@ -72,6 +72,10 @@ export default function OutlinedCard() {
       // console.log(note)
   }
 
+  function handleSendCharacter(id) {
+    //i want to grab a clicked character as a whole and send it to the existing.jsx tab so i can spread the character info out to the different rooms
+  }
+
 
 
   return (
