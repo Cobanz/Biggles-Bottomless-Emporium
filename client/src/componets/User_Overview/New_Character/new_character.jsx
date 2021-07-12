@@ -11,12 +11,17 @@ import { Class } from './Checkboxes/class';
 import { Background } from './Checkboxes/background'
 import Name_field from './name_field';
 import { useHistory } from 'react-router';
-
+import useSound from 'use-sound';
+import NewCharacterAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/New_here.mp3'
 
 
 export const New_character = (props) => {
 
-
+    const NewCharacterSound = () => {
+        const [play] = useSound(NewCharacterAudio);
+    
+        return <button onClick={play}>play me</button>
+      }
 
     const [character_name, setCharacter_Name] = useState("")
 
@@ -153,7 +158,7 @@ export const New_character = (props) => {
     return (
 
         <div className="new_character_container">
-            <header>This is where we can build new characters</header>
+            <header> This is where we can build new characters <NewCharacterSound/> </header>
 
                 <div>
                     <Name_field character_name={character_name} handleChange={handleNameChange}></Name_field>

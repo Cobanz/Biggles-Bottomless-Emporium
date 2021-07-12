@@ -12,11 +12,11 @@ import { New_character } from './componets/User_Overview/New_Character/new_chara
 import { Existing } from './componets/User_Overview/Existing_Character/existing';
 
 const App = () => {
-
+  
   const [user, setUser] = useState("")
   const [logout, setLogout] = useState('')
- 
-
+  const [selected, setSelected] = useState({})
+  
 
   useEffect(() => {
     // auto-login
@@ -103,6 +103,7 @@ const App = () => {
                 // onClick={logout}
                 >log out</button>
               </li>
+             
             </ul>
           </nav>
 
@@ -117,11 +118,11 @@ const App = () => {
             </Route>
 
             <Route path="/user">
-              <User_Overview />
+              <User_Overview user={user} selectedCharacter={setSelected}/>
             </Route>
 
             <Route path="/details">
-              <Existing />
+              <Existing existingCharacter={selected}/>
             </Route>
 
             <Route path="/about">

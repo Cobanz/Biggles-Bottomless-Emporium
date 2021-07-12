@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import loginImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/red_dragon.png";
 import { withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router';
+import useSound from 'use-sound';
+import WelcomeAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Welcome_with_sound_effects.wav';
 
 
 export const Login = (props) => {
@@ -10,7 +12,11 @@ export const Login = (props) => {
   const [password, setPassword] = useState("");
   const [error, setErrors] = useState("")
   
- 
+  const Intro = () => {
+    const [play] = useSound(WelcomeAudio);
+
+    return <button onClick={play}>play me</button>
+  }
    
 
   //   const  onSubmit = e => {
@@ -62,7 +68,8 @@ export const Login = (props) => {
 
   return (
     <div className="base-container" ref={props.containerRef}>
-      <div className="header">Login</div>
+      <header className="header">Biggles Bottemless Emporium <Intro/></header>
+      <header>Every adventurers one stop shop or your money back!</header>
       <div className="content">
       <div className="image">
           <img src={loginImg} alt="Login" />

@@ -13,6 +13,8 @@ import Background from "./links/Background.jsx";
 // import Proficencies from "./links/Proficencies.jsx";
 // import Equipment from "./links/Equipment.jsx";
 // import Feats from './links/Feats.jsx';
+import useSound from 'use-sound';
+import TellMeSomethingAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Tell_me_something.mp3'
 
 
 function TabPanel(props) {
@@ -56,10 +58,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Existing() {
+export function Existing(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   // const [clicked_Character, setClicked_Character] = useState([])
+
+  const TellMeSomething = () => {
+    const [play] = useSound(TellMeSomethingAudio);
+
+    return <button onClick={play}>play me</button>
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -81,22 +89,23 @@ export function Existing() {
           <Tab label="Race" {...a11yProps(1)} />
           <Tab label="Class" {...a11yProps(2)} />
           <Tab label="Background" {...a11yProps(3)} />
+          <TellMeSomething/>
           {/* <Tab label="Proficencies" {...a11yProps(4)} />
           <Tab label="Equipment" {...a11yProps(5)} />
           <Tab label="Feats" {...a11yProps(6)} /> */}
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <General />
+        <General existingCharacter={props.existingCharacter}/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Race />
+        <Race existingCharacter={props.existingCharacter}/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Job />
+        <Job existingCharacter={props.existingCharacter}/>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <Background />
+        <Background existingCharacter={props.existingCharacter}/>
       </TabPanel>
       {/* <TabPanel value={value} index={4}>
         <Proficencies/>

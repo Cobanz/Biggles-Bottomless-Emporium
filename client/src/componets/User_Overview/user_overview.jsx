@@ -2,11 +2,16 @@
 
 import React, { useState, useHistory, useEffect } from 'react';
 import OutlinedCard from './character_card';
-
+import useSound from 'use-sound';
+import OverviewAudio from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Oh_hey_there.mp3"
 
 export const User_Overview = (props) => {
 
-    const [charater_list, setCharaters] = useState('')
+    const OverviewSound = () => {
+        const [play] = useSound(OverviewAudio);
+    
+        return <button onClick={play}>play me</button>
+      }
 
     //do a fetch to get the user list associated with the person thats logged in and display what they have
     //attatch the new charater form button to the bottom of the list
@@ -14,10 +19,10 @@ export const User_Overview = (props) => {
     return (
         <>
             <header>This is where you will see the characters a user
-         has already created and where you can make a new one!</header>
+         has already created and where you can make a new one! <OverviewSound/> </header>
             <image className="image-of-biggles-uo" src="" alt="image of biggles"></image>
 
-            <div className="character-card-container"> <OutlinedCard></OutlinedCard></div>
+            <div className="character-card-container"> <OutlinedCard user={props.user} selectedCharacter={props.selectedCharacter}></OutlinedCard></div>
         </>
     );
 

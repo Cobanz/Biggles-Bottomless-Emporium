@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Proficencies() {
+function Proficencies(props) {
     return (
         <div>
             Proficencies breakdown maybe skills list 

@@ -16,13 +16,13 @@ import Fighter from './icons/Fighter.png'
 import Monk from './icons/Monk.png';
 import Paladin from './icons/Paladin.png'
 import Ranger from './icons/Ranger.png'
-import Rouge from './icons/Rouge.png'
+import Rogue from './icons/Rouge.png'
 import Scorcerer from './icons/Scorcerer.png'
 import Warlock  from './icons/Warlock.png'
 import Wizard from './icons/Wizard.png'
 
 
-const icons = {Barbarian, Paladin, Bard, Cleric, Druid, Fighter, Monk, Ranger, Rouge, Scorcerer, Warlock, Wizard}
+const icons = {Barbarian, Paladin, Bard, Cleric, Druid, Fighter, Monk, Ranger, Rogue, Scorcerer, Warlock, Wizard}
 
 
 const useStyles = makeStyles({
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+export default function OutlinedCard(props) {
   const classes = useStyles();
   const bull = <span className="character-card">•</span>;
 
@@ -52,8 +52,10 @@ export default function OutlinedCard() {
     fetch("/character_sheet/").then((r) => {
       if (r.ok) {
         r.json().then((names) => {
-          setCharacter_list(names)
+          let user_chars = names.filter(name => name.user_id === props.user.id)
+          setCharacter_list(user_chars)
           console.log(names)
+          // props.selectedCharacter(names[0])
 
         });
       }
@@ -97,7 +99,7 @@ export default function OutlinedCard() {
 
           <CardActions>
             <Link to="/details">
-            <Button size="small">Character Details</Button>
+            <Button size="small" onClick={()=> props.selectedCharacter(character)}>Character Details</Button>
             </Link>
             <Button size="small" onClick={() => handleDeleteCharacter(character.id)}>Delete</Button>
           </CardActions>

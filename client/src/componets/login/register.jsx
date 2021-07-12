@@ -1,6 +1,7 @@
 import React, { useState, useHistory } from "react";
 import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
-
+import useSound from 'use-sound';
+import NewAccountAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Make_yourself_at_home.mp3'
 
 export const Register = (props) => {
   const [name, setName] = useState("");
@@ -16,8 +17,12 @@ export const Register = (props) => {
       },
       body: JSON.stringify({ name, password }),
     })
+  }
 
+  const NewAccountSound = () => {
+    const [play] = useSound(NewAccountAudio);
 
+    return <button onClick={play}>play me</button>
   }
 
 
@@ -38,7 +43,7 @@ export const Register = (props) => {
 
   return (
     <div className="base-container" ref={props.containerRef}>
-      <div className="header">Register</div>
+      <div className="header">New here? Have a seat!! <NewAccountSound/></div>
       <div className="content">
         <div className="image">
           <img src={registerImg} alt="Register" />

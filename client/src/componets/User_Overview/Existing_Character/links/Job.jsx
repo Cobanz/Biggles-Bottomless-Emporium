@@ -1,9 +1,36 @@
 import React from 'react'
 
-function Job() {
+function Job(props) {
+
+
     return (
         <div>
-            Class info with link to corosponding class breakdown pages
+        Class info with link to corosponding class breakdown pages
+        <br></br>
+        <br></br>
+        {/* Name - {props.existingCharacter.jobs[0].name? props.existingCharacter.jobs[0].name:null} */}
+       
+        {/* {props.existingCharacter.jobs.length>0 ? props.existingCharacter.jobs.map((job) => {
+         return `Name - ${job.name}, Hit Die - ${job.hit_die}, Saving Throws - ${job.saving_throws}
+         Spellcasting - ${job.spellcasting}, Starting equipment - ${job.starting_equipment}`
+        }) : null} */}
+
+        {props.existingCharacter.jobs.length>0 ? props.existingCharacter.jobs.map((job) => {
+         return(<div>
+         
+         <div> Name - {job.name}</div>
+         <div> Hit Die - {job.hit_die}</div>
+         <div> Saving Throws - {job.saving_throws}</div>
+         <div> Spellcasting - {job.spellcasting}</div>
+         <div> Starting Equipment - {job.starting_equipment}</div>
+         <div> Starting Equipment Options - {job.starting_equipment_options}</div>
+         <div>Proficencies - {job.proficiencies}</div>
+         <div>Proficencies Options - {job.proficiency_choices}</div>
+         
+          </div>
+         )
+        }) : null}
+
         </div>
     )
 }

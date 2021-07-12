@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function General() {
+function General(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('Controlled');
 
@@ -28,7 +28,7 @@ function General() {
             
             <div className="bio-container">
             <div>
-                Field for the bio to actually sit "attach a state or something here to take a update or saved bio description"
+                Bio: {props.existingCharacter.personal_bio? props.existingCharacter.personal_bio:null}
             </div>
 
             <div>     
@@ -46,12 +46,8 @@ function General() {
                 <div className="eye-color"></div> */}
             </div>
 
-
-
-
-
             <div className="general-image-container">
-                "image saved here"
+                "image saved here" {props.existingCharacter.image? props.existingCharacter.image : null}
                 <img className="general-image"/>
                 <button>save image</button>
             </div>
