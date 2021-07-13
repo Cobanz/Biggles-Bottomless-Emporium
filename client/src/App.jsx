@@ -32,15 +32,9 @@ const App = () => {
     });
   }, []);
  
-  let history = useHistory()
 
-  function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {setUser({})
-      }
-    });
-    history.push('/landing')
-  }
+
+
 
 // useEffect(() => {
 //   fetch('/logout').then((r) => {
@@ -86,14 +80,20 @@ const App = () => {
     );
   };
 
+const NavBar = () =>{
 
-  
+  let history = useHistory()
 
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {setUser({})
+      }
+    });
+    history.push('/landing')
+  }
 
   return (
-    <div className="App">
-      <Router>
-        <div className="App">
+
           <nav className="nav-bar">
             <ul className="nav-bar-ul">
               <li className="nav-bar-ul-li a">
@@ -125,6 +125,16 @@ const App = () => {
              
             </ul>
           </nav>
+  )
+}
+
+
+
+  return (
+    <div className="App">
+      <Router>
+        <div className="App">
+          <NavBar></NavBar>
 
           <Switch>
 
