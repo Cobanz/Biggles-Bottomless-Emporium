@@ -19,12 +19,19 @@ function Job(props) {
          return(<div>
          
          <div> Name - {job.name}</div>
+         <br/>
          <div> Hit Die - {job.hit_die}</div>
+         <br/>
          <div> Saving Throws - {job.saving_throws}</div>
+         <br/>
          <div> Spellcasting - {job.spellcasting}</div>
+         <br/>
          <div> Starting Equipment - {job.starting_equipment}</div>
+         <br/>
          <div> Starting Equipment Options - {job.starting_equipment_options}</div>
+         <br/>
          <div>Proficencies - {job.proficiencies}</div>
+         <br/>
          <div>Proficencies Options - {job.proficiency_choices}</div>
          
           </div>

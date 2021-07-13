@@ -10,6 +10,8 @@ import { User_Overview } from './componets/User_Overview/user_overview';
 import { Ask_me_anything } from './componets/AMA/ask_me_anything';
 import { New_character } from './componets/User_Overview/New_Character/new_character';
 import { Existing } from './componets/User_Overview/Existing_Character/existing';
+import { Landing } from './componets/Landing/Landing'
+
 
 const App = () => {
   
@@ -81,6 +83,9 @@ const App = () => {
           <nav className="nav-bar">
             <ul className="nav-bar-ul">
               <li className="nav-bar-ul-li a">
+                <Link to="/landing">Landing</Link>
+              </li>
+              <li className="nav-bar-ul-li a">
                 <Link to="/">Home</Link>
               </li>
               <li className="nav-bar-ul-li a">
@@ -108,6 +113,10 @@ const App = () => {
           </nav>
 
           <Switch>
+
+          <Route path="/landing">
+            <Landing></Landing>
+          </Route>
 
             <Route path="/new">
               <New_character user={user}/>

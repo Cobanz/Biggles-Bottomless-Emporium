@@ -1,5 +1,4 @@
 
-
 import React, { useState, useHistory, useEffect } from 'react';
 import OutlinedCard from './character_card';
 import useSound from 'use-sound';
@@ -25,5 +24,4 @@ export const User_Overview = (props) => {
             <div className="character-card-container"> <OutlinedCard user={props.user} selectedCharacter={props.selectedCharacter}></OutlinedCard></div>
         </>
     );
-
 }
