@@ -1,6 +1,6 @@
 
 import './App.scss';
-import { useState, useEffect, useHistory } from 'react';
+import { useState, useEffect} from 'react';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Register } from "./componets/login/index"
@@ -11,11 +11,11 @@ import { Ask_me_anything } from './componets/AMA/ask_me_anything';
 import { New_character } from './componets/User_Overview/New_Character/new_character';
 import { Existing } from './componets/User_Overview/Existing_Character/existing';
 import { Landing } from './componets/Landing/Landing'
-
+import { useHistory } from 'react-router';
 
 const App = () => {
   
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState({})
   const [logout, setLogout] = useState('')
   const [selected, setSelected] = useState({})
   
@@ -32,6 +32,15 @@ const App = () => {
     });
   }, []);
  
+  let history = useHistory()
+
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {setUser({})
+      }
+    });
+    history.push('/landing')
+  }
 
 // useEffect(() => {
 //   fetch('/logout').then((r) => {
@@ -42,6 +51,8 @@ const App = () => {
 //     }
 //   })
 // }, []);
+
+
  
 
   const [isLoginActive, setisLoginActive] = useState(1);
@@ -76,6 +87,9 @@ const App = () => {
   };
 
 
+  
+
+
   return (
     <div className="App">
       <Router>
@@ -105,7 +119,7 @@ const App = () => {
               </li>
               <li>
                 <button 
-                // onClick={logout}
+                onClick={handleLogoutClick}
                 >log out</button>
               </li>
              
