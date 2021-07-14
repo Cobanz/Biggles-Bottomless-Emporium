@@ -11,11 +11,13 @@ const options = {
 };
 
 const Root = () => (
+  <React.StrictMode>
   <AlertProvider template={AlertTemplate} {...options}
   // {...options}
   >
     <App />
   </AlertProvider>
+  </React.StrictMode>
 )
 
 render(<Root />, document.getElementById('root'))
