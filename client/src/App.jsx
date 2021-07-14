@@ -12,6 +12,7 @@ import { New_character } from './componets/User_Overview/New_Character/new_chara
 import { Existing } from './componets/User_Overview/Existing_Character/existing';
 import { Landing } from './componets/Landing/Landing'
 import { useHistory } from 'react-router';
+import Gif from './componets/login/Biggles.gif'
 
 const App = () => {
 
@@ -117,10 +118,13 @@ const App = () => {
           <li className="nav-bar-ul-li a">
             <Link to="/ask">Ask Me Anything</Link>
           </li>
-          <li>
+          <li className="nav-bar-ul-li a">
             <button
               onClick={handleLogoutClick}
             >log out</button>
+          </li>
+          <li className="logo">
+          <img src={Gif}/>
           </li>
 
         </ul>

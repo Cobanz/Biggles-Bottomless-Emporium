@@ -25,7 +25,7 @@ import Wizard from './icons/Wizard.png'
 const icons = {Barbarian, Paladin, Bard, Cleric, Druid, Fighter, Monk, Ranger, Rogue, Scorcerer, Warlock, Wizard}
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
   },
@@ -38,9 +38,14 @@ const useStyles = makeStyles({
     fontSize: 14,
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 50,
   },
-});
+  card:{
+    marginBottom: 10,
+    // display: 'none',
+  }
+})
+);
 
 export default function OutlinedCard(props) {
   const classes = useStyles();
@@ -83,7 +88,7 @@ export default function OutlinedCard(props) {
   return (
     <div>
       {character_list.map((character) => {
-        return <Card className="exsisting-character-card" variant="outlined" key={character.id}>
+        return <Card className={classes.card} variant="outlined" key={character.id}>
           <CardContent>
             <Typography className="character-race" color="textSecondary" gutterBottom>
               {character.race.name}

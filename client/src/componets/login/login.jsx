@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router';
 import useSound from 'use-sound';
 import WelcomeAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Welcome_with_sound_effects.wav';
-
+import Gif from "./Biggles.gif"
 
 export const Login = (props) => {
 
@@ -32,6 +32,7 @@ export const Login = (props) => {
   //       })
 
   // }
+  const history = useHistory()
 
   function onSubmit(e) {
     e.preventDefault();
@@ -48,9 +49,8 @@ export const Login = (props) => {
         r.json().then((err) => setErrors(err.errors));
       }
     });
-    // history.push('/user')
+    history.push('/user')
   }
-
 
 
   const logName = e => {
@@ -68,7 +68,7 @@ export const Login = (props) => {
 
   return (
     <div className="base-container" ref={props.containerRef}>
-      <header className="header">Biggles Bottemless Emporium <Intro/></header>
+      <header className="header"><Intro/></header>
       <header>Every adventurers one stop shop or your money back!</header>
       <div className="content">
       <div className="image">

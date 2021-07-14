@@ -1,7 +1,15 @@
 //Custom Fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
+body{
+  background-image: url("https://i.pinimg.com/originals/40/70/2d/40702d8635092eeb1925f9bfca13dfd2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  // text-align: center;
 
+}
 
 .App {
   // background-image: src="/Users/grant/Development/capstone/DnD-Project/client/src/componets/Shop_With_Cat.jpeg";
@@ -48,6 +56,12 @@ text-decoration: inherit;
   background-color: #111;
 }
 
+
+
+.logo{
+  float: right;
+}
+
 //Login Main Container
 .login {
   width: 27em;
@@ -72,7 +86,7 @@ text-decoration: inherit;
     height: 100%;
     z-index: 99;
     padding: 17px 10px;
-    //transition: transform 200ms ease-in-out;
+    // transition: transform 200ms ease-in-out;
   }
   .right-side {
     display: flex;
@@ -133,9 +147,9 @@ text-decoration: inherit;
 }
 
 //character cards on user
-// .exsisting-character-card{
-  
-// }
+.exsisting-character-card{
+  padding-bottom: 10px;
+}
 
 // .character-image{
 
@@ -162,6 +176,7 @@ text-decoration: inherit;
   display: flex;
   width: 100vw;
   flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.411);
 }
 
 .big_three_container{

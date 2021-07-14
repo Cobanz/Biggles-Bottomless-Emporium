@@ -182,7 +182,7 @@ export const New_character = (props) => {
 
             <br/>
 
-            <div className="other-character-stuff">
+            {/* <div className="other-character-stuff">
                 <div> Your Starting Equipment
         <option></option>
                 </div>
@@ -206,7 +206,7 @@ export const New_character = (props) => {
                 <div> Pick Extra Language Options *
         <option></option>
                 </div>
-            </div>
+            </div> */}
 
             <button onClick={onSubmit}>Submit?</button>
 
