@@ -1,6 +1,6 @@
 
 import './App.scss';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Register } from "./componets/login/index"
@@ -14,11 +14,10 @@ import { Landing } from './componets/Landing/Landing'
 import { useHistory } from 'react-router';
 
 const App = () => {
-  
+
   const [user, setUser] = useState({})
-  const [logout, setLogout] = useState('')
   const [selected, setSelected] = useState({})
-  
+
 
   useEffect(() => {
     // auto-login
@@ -26,28 +25,28 @@ const App = () => {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-          
+
         });
       }
     });
   }, []);
- 
 
 
 
 
-// useEffect(() => {
-//   fetch('/logout').then((r) => {
-//     if (r.ok) {
-//       r.json().then ((logout) => {
-//         setLogout(logout)
-//       })
-//     }
-//   })
-// }, []);
+
+  // useEffect(() => {
+  //   fetch('/logout').then((r) => {
+  //     if (r.ok) {
+  //       r.json().then ((logout) => {
+  //         setLogout(logout)
+  //       })
+  //     }
+  //   })
+  // }, []);
 
 
- 
+
 
   const [isLoginActive, setisLoginActive] = useState(1);
   let current = isLoginActive ? "Register" : "Login";
@@ -80,53 +79,54 @@ const App = () => {
     );
   };
 
-const NavBar = () =>{
+  const NavBar = () => {
 
-  let history = useHistory()
+    let history = useHistory()
 
-  function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {setUser({})
-      }
-    });
-    history.push('/landing')
+    function handleLogoutClick() {
+      fetch("/logout", { method: "DELETE" }).then((r) => {
+        if (r.ok) {
+          setUser({})
+        }
+      });
+      history.push('/landing')
+    }
+
+    return (
+
+      <nav className="nav-bar">
+        <ul className="nav-bar-ul">
+          <li className="nav-bar-ul-li a">
+            <Link to="/landing">Landing</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/user">User</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/details">Character Details</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/new">New Character</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/about">About</Link>
+          </li>
+          <li className="nav-bar-ul-li a">
+            <Link to="/ask">Ask Me Anything</Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogoutClick}
+            >log out</button>
+          </li>
+
+        </ul>
+      </nav>
+    )
   }
-
-  return (
-
-          <nav className="nav-bar">
-            <ul className="nav-bar-ul">
-              <li className="nav-bar-ul-li a">
-                <Link to="/landing">Landing</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/user">User</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/details">Character Details</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/new">New Character</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/about">About</Link>
-              </li>
-              <li className="nav-bar-ul-li a">
-                <Link to="/ask">Ask Me Anything</Link>
-              </li>
-              <li>
-                <button 
-                onClick={handleLogoutClick}
-                >log out</button>
-              </li>
-             
-            </ul>
-          </nav>
-  )
-}
 
 
 
@@ -138,12 +138,12 @@ const NavBar = () =>{
 
           <Switch>
 
-          <Route path="/landing">
-            <Landing></Landing>
-          </Route>
+            <Route path="/landing">
+              <Landing></Landing>
+            </Route>
 
             <Route path="/new">
-              <New_character user={user}/>
+              <New_character user={user} />
             </Route>
 
             <Route path="/ask">
@@ -151,11 +151,11 @@ const NavBar = () =>{
             </Route>
 
             <Route path="/user">
-              <User_Overview user={user} selectedCharacter={setSelected}/>
+              <User_Overview user={user} selectedCharacter={setSelected} />
             </Route>
 
             <Route path="/details">
-              <Existing existingCharacter={selected}/>
+              <Existing existingCharacter={selected} />
             </Route>
 
             <Route path="/about">

@@ -45,11 +45,11 @@ function General(props) {
             
             <div className="bio-container">
             <div>
-                Bio: {props.existingCharacter.personal_bio? props.existingCharacter.personal_bio:null}
+                <b>Bio -</b> {props.existingCharacter.personal_bio? props.existingCharacter.personal_bio:null}
             </div>
 
             <div>     
-                this is the field to type in a update or initial bio 
+  
                 <TextField id="filled-textarea" label="Character Bio" placeholder="Tell Me About Yourself" multiline variant="filled"/>
             </div>
             <button>save</button>

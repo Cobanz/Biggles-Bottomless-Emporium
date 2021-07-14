@@ -124,12 +124,26 @@ text-decoration: inherit;
 }
 
 //character cards on user
-.exsisting-character-card{
+// .exsisting-character-card{
   
+// }
+
+// .character-image{
+
+// }
+
+//existing tables
+.details_container{
+  display: flex;
+  width: 60vw;
+  flex-direction: column;
 }
 
-.character-image{
-
+.details a{
+  display: flex;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: end;
 }
 
 
