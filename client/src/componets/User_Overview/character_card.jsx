@@ -97,7 +97,7 @@ export default function OutlinedCard(props) {
               {character.name}
             </Typography>
             <Typography className="character-class" color="textSecondary">
-               {character.jobs[0].name}
+               {character.jobs.name}
         </Typography>
             <img src={icons[character.jobs[0].name]} className="character-image" alt="generic class pic"/>
           </CardContent>

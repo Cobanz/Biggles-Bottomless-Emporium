@@ -116,7 +116,7 @@ const App = () => {
             <Link to="/about">About</Link>
           </li>
           <li className="nav-bar-ul-li a">
-            <Link to="/ask">Ask Me Anything</Link>
+            <Link to="/ask">Story Time with Biggles</Link>
           </li>
           <li className="nav-bar-ul-li a">
             <button
