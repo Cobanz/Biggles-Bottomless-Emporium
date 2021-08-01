@@ -69,18 +69,18 @@ export const Login = (props) => {
   return (
     <div className="base-container" ref={props.containerRef}>
       <header className="header"><Intro/></header>
-      <header>Every adventurers one stop shop or your money back!</header>
+      <header className="register-header">Every adventurers one stop shop or your money back!</header>
       <div className="content">
       <div className="image">
           <img src={loginImg} alt="Login" />
        </div>
         <div className="form">
           <div className="form-group">
-            <label htmlFor="username">Name</label>
+            <label className="form-lable" htmlFor="username">Name</label>
             <input type="text" name="name" placeholder="Name" onChange={logName} value={name} />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label className="form-lable" htmlFor="password">Password</label>
             <input type="password" name="password" placeholder="Password" onChange={logPassword} value={password} />
           </div>
         </div>

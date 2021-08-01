@@ -4449,6 +4449,6 @@ puts "backgrounds done"
 admin = User.create!(name: 'admin', password: 'admin', password_confirmation: 'admin') 
 
 
-character1 = CharacterSheet.create!( user_id: admin.id ,race_id: Race.first.id, background_id: Background.first.id,  name: "Coban", image: nil , personal_bio: "Born a mere mortal Coban has THRIVED in this world of adventure, gifted the power of lycanthropy and the power to turn into a werebear, Coban has traveld the planes, Devils, Dragons and Litches fear him for he is the mightyest man of all. TREMBLE BEFORE HIM")
+character1 = CharacterSheet.create!( user_id: admin.id ,race_id: Race.first.id, background_id: Background.first.id,  name: "Coban", image: nil , personal_bio: "Born a mere mortal Coban has THRIVED in this world of adventure, gifted the power of lycanthropy and the power to turn into a werebear, Coban has traveled the plains,  Dragons and Litches fear him for he is the mightyest man of all. TREMBLE BEFORE HIM")
 
 class1 = CharacterClass.create!(job_id:Job.all.first.id, character_sheet_id:character1.id)

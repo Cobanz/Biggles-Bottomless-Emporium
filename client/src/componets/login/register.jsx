@@ -43,19 +43,19 @@ export const Register = (props) => {
 
   return (
     <div className="base-container" ref={props.containerRef}>
-      <div className="header">New here? Have a seat!! <NewAccountSound/></div>
+      <div className="register-header">New here? Have a seat!! <NewAccountSound/></div>
       <div className="content">
         <div className="image">
           <img src={registerImg} alt="Register" />
         </div>
         <div className="form">
           <div className="form-group">
-            <label htmlFor="username">Pick A Name</label>
+            <label className="form-lable" htmlFor="username">Pick A Name</label>
             <input type="text" name="name" placeholder="Name" onChange={logName} value={name} />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Pick A Password</label>
+            <label className="form-lable" htmlFor="password">Pick A Password</label>
             <input type="password" name="password" placeholder="password" onChange={logPassword} value={password} />
           </div>
         </div>
