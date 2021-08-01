@@ -1,12 +1,12 @@
-import React, { useState, useHistory } from "react";
-import registerImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/blue_dragon.png";
+import React, { useState} from "react";
+import registerImg from "./blue_dragon.png";
 import useSound from 'use-sound';
 import NewAccountAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Make_yourself_at_home.mp3'
 
 export const Register = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setErrors] = useState("")
+  // const [error, setErrors] = useState("")
 
   function onSubmit(e) {
     e.preventDefault();

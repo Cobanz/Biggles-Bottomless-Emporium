@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import loginImg from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/login/red_dragon.png";
+import loginImg from "./red_dragon.png";
 // import { withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router';
 import useSound from 'use-sound';
