@@ -1,8 +1,8 @@
 
-import React, { useState, useHistory, useEffect } from 'react';
+import React from 'react';
 import OutlinedCard from './character_card';
 import useSound from 'use-sound';
-import OverviewAudio from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Oh_hey_there.mp3"
+import OverviewAudio from "./Oh_hey_there.mp3"
 
 export const User_Overview = (props) => {
 
