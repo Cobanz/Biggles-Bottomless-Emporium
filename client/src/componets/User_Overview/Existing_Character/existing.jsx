@@ -14,7 +14,7 @@ import Background from "./links/Background.jsx";
 // import Equipment from "./links/Equipment.jsx";
 // import Feats from './links/Feats.jsx';
 import useSound from 'use-sound';
-import TellMeSomethingAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Tell_me_something.mp3'
+import TellMeSomethingAudio from './Tell_me_something.mp3'
 
 
 function TabPanel(props) {

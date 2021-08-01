@@ -3,7 +3,7 @@ import { useAlert } from "react-alert";
 import { Link } from 'react-router-dom'
 import MimicGif from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/Landing/mimic_i_like.gif'
 import useSound from 'use-sound';
-import WelcomeAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Mimic.mp3';
+import WelcomeAudio from './Mimic.mp3';
 
 
 

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
+// import { makeStyles } from '@material-ui/core/styles';
+// import FormLabel from '@material-ui/core/FormLabel';
+// import FormControl from '@material-ui/core/FormControl';
+// import FormGroup from '@material-ui/core/FormGroup';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormHelperText from '@material-ui/core/FormHelperText';
+// import Checkbox from '@material-ui/core/Checkbox';
 import { Race } from './Checkboxes/race';
 import { Class } from './Checkboxes/class';
 import { Background } from './Checkboxes/background'
 import Name_field from './name_field';
 import { useHistory } from 'react-router';
 import useSound from 'use-sound';
-import NewCharacterAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/New_here.mp3'
+import NewCharacterAudio from './New_here.mp3'
 
 
 export const New_character = (props) => {
