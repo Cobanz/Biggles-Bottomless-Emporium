@@ -3,7 +3,7 @@ import loginImg from "./red_dragon.png";
 // import { withRouter } from 'react-router-dom'
 import { useHistory } from 'react-router';
 import useSound from 'use-sound';
-import WelcomeAudio from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/sounds/Welcome_with_sound_effects.wav';
+import WelcomeAudio from './Welcome_with_sound_effects.wav';
 // import Gif from "./Biggles.gif"
 
 export const Login = (props) => {
