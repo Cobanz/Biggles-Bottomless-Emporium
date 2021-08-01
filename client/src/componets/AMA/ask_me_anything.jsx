@@ -1,7 +1,7 @@
 import React, { useState , useHistory} from "react";
 import Biggles from "./Biggles.png"
 import useSound from 'use-sound';
-import RexAudio from "/Users/grant/Development/capstone/DnD-Project/client/src/componets/AMA/Rex.mp3"
+import RexAudio from "./Rex.mp3"
 
 export const Ask_me_anything = (props) => {
 
