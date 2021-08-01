@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import { useAlert } from "react-alert";
 import { Link } from 'react-router-dom'
-import MimicGif from '/Users/grant/Development/capstone/DnD-Project/client/src/componets/Landing/mimic_i_like.gif'
+import MimicGif from './mimic_i_like.gif'
 import useSound from 'use-sound';
 import WelcomeAudio from './Mimic.mp3';
 
